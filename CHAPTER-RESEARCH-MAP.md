@@ -7,7 +7,7 @@ gaps remain. Most of Act Two and Act Three are already written — as the
 formulas), and the 1,135-line build score. Act One has the thesis prose but
 needs composing into pedagogy.
 
-**Compiled:** 2026-06-02 from `chapters/`, `projects/`, `modes/`, `SCRIPTS/`,
+**Compiled:** 2026-06-02 from `chapters/`, `projects/`, `skills/`, `scripts/`,
 `data/`, `README.md`, `DATA_CONTRACT.md`.
 
 ---
@@ -18,16 +18,16 @@ needs composing into pedagogy.
 |---|---|---|---|
 | 1 | The Fluency Trap | `chapters/00-introduction.md`, SDD Principles 3–4 | **Partial** — thesis prose exists, pedagogy + setup needed |
 | 2 | The Reallocation Principle | plain-summary, SDD §1 + Principle 1 | **Strong** — 3-3-2 fully articulated; stats need citing |
-| 3 | The Verified-Data Contract | `modes/_shared.md`, `modes/README.md`, `DATA_CONTRACT.md` | **Strong** — contract fully written |
-| 4 | Where the Money Went: SEC Form D | `80-days-day-01..05`, `SCRIPTS/sec/` | **Strong** — near-publishable narrative + numbers |
+| 3 | The Verified-Data Contract | `skills/_shared.md`, `skills/README.md`, `DATA_CONTRACT.md` | **Strong** — contract fully written |
+| 4 | Where the Money Went: SEC Form D | `80-days-day-01..05`, `scripts/sec/` | **Strong** — near-publishable narrative + numbers |
 | 5 | Who Sponsors: 80 Days Scorer | `80-days-day-07..08`, SDD Component 2, data audits | **Strong** — formula + data + entity resolution |
-| 6 | Is the Job Real: ATS & Liveness | `80-days-day-06`, `SCRIPTS/ats/` | **Strong** — ATS subsystem + the "triple win" narrative |
-| 7 | Is the Role Any Good: BLS/O\*NET | `SCRIPTS/bls/`, `soc_classification_*`, `bls-audit.md` | **Strong (mechanics)** — academic papers need de-jargoning |
+| 6 | Is the Job Real: ATS & Liveness | `80-days-day-06`, `scripts/ats/` | **Strong** — ATS subsystem + the "triple win" narrative |
+| 7 | Is the Role Any Good: BLS/O\*NET | `scripts/bls/`, `soc_classification_*`, `bls-audit.md` | **Strong (mechanics)** — academic papers need de-jargoning |
 | 8 | The Visa Timeline Manager | SDD Component 1 + Principle 2, build-score Step 1 | **Strong** — spec + 8 intake questions; verify rules |
 | 9 | The Bayesian Role Scorer | SDD Component 3, plain-summary feature 3 | **Strong** — composite formula fully specified |
 | 10 | The OPT Framing Generator | SDD Component 4 + Risk 3, plain-summary feature 4 | **Strong** — tier rules written; needs ethics review |
-| 11 | Resumes That Survive the Filter | `SCRIPTS/resumes/`, `80-days-day-06` Win #2 | **Partial** — tooling documented; parser-failure example needed |
-| 12 | Modes: Operating the Engine | `modes/` (all recipes), SDD §3 flows | **Strong** — modes fully documented |
+| 11 | Resumes That Survive the Filter | `scripts/resumes/`, `80-days-day-06` Win #2 | **Partial** — tooling documented; parser-failure example needed |
+| 12 | Skills: Operating the Engine | `skills/` (all recipes), SDD §3 flows | **Strong** — skills fully documented |
 | 13 | Pipeline Tracker & Skip Rate | SDD Component 5, plain-summary feature 5, patterns audit | **Strong** — schema + metric defined |
 | 14 | The Build and the Honest Run | `boondoggle-score` (1,135 lines), SDD §9–14 | **Strong** — build score is the chapter spine |
 
@@ -116,10 +116,10 @@ a worked example.
 ## Chapter 3 — The Verified-Data Contract
 
 **Existing source:**
-- `modes/_shared.md` — the **prime directive** ("use collected data and tested
+- `skills/_shared.md` — the **prime directive** ("use collected data and tested
   scripts first"), the **sources-of-truth table**, the **ten verified-data
   rules**, and the **logging rules** are written verbatim and ready.
-- `modes/README.md` — the run-inspect-record loop, good vs. bad mode behavior.
+- `skills/README.md` — the run-inspect-record loop, good vs. bad skill behavior.
 - `DATA_CONTRACT.md` — the five-layer ownership model (source / maintained /
   generated / book / private).
 
@@ -128,7 +128,7 @@ a worked example.
 **Gaps to write:**
 - The "two ways to estimate sponsorship" worked example (ask the model vs. query
   the records) that makes the discrepancy visible.
-- A beginner-friendly first mode run with a `RUN_LOG.md` entry as the artifact.
+- A beginner-friendly first skill run with a `RUN_LOG.md` entry as the artifact.
 
 ---
 
@@ -150,7 +150,7 @@ a worked example.
   pages, 62% verification, HTML→markdown for LLM analysis.
 - `…/80-days-day-05/README.md` — "separate the willing from the wealthy";
   scraping stats; **$0 budget**.
-- `SCRIPTS/sec/README.md` — the maintained pipeline (`download → refresh →
+- `scripts/sec/README.md` — the maintained pipeline (`download → refresh →
   combine → filter → unique → domain inference → flatten`).
 - `data/sec/form-d/processed/recent-sec-quarters-audit.md` — current refresh audit.
 - `projects/soc_classification_methods.md` §1.3 — EDGAR full-text search API.
@@ -178,7 +178,7 @@ converting day-log voice (emoji, "we built today") into chapter voice.
   **LCA filing rate 0.40, H-1B approval rate 0.30, funding recency 0.20, size
   0.10**; tiers **Proven ≥ 0.65, Likely ≥ 0.35, Unknown < 0.35** (no LCA
   history); the "$10M funding but no LCA → Unknown with positive signal" edge.
-- `SCRIPTS/sec/entity_resolution.py` + README — the join order (FEIN exact →
+- `scripts/sec/entity_resolution.py` + README — the join order (FEIN exact →
   normalized name → fuzzy 0.88 → unknown).
 - `data/80-days-to-stay/data/` audits — `SEC_DOL_H1b_data_mapped-audit.md`,
   `-join-validation-audit.md`, `-entity-resolution-readiness-audit.md`.
@@ -201,7 +201,7 @@ converting day-log voice (emoji, "we built today") into chapter voice.
 - `…/80-days-day-06/README.md` — "The ATS Revelation": the **triple win** —
   Win #1 live job postings (Greenhouse `boards-api` example), Win #2 resume
   strategy intelligence (feeds Ch 11), Win #3 company-sophistication signal.
-- `SCRIPTS/ats/README.md` — the full subsystem: `detect_ats.py` (unified
+- `scripts/ats/README.md` — the full subsystem: `detect_ats.py` (unified
   detector), `scan.mjs` (zero-token provider scan), `check-liveness.mjs` +
   `liveness-core.mjs` + `liveness-browser.mjs` (Playwright liveness), Greenhouse
   and Lever production scrapers, `providers/` (Greenhouse/Lever/Ashby),
@@ -222,7 +222,7 @@ converting day-log voice (emoji, "we built today") into chapter voice.
 ## Chapter 7 — Is the Role Any Good: BLS / O\*NET Role Quality
 
 **Existing source:**
-- `SCRIPTS/bls/README.md` + `data/bls/bls-audit.md` — the compact SOC occupation
+- `scripts/bls/README.md` + `data/bls/bls-audit.md` — the compact SOC occupation
   table (O\*NET identity, alternate titles, job zones, ability/skill levels, BLS
   OEWS national employment + wage). `data/bls/` holds OEWS years 2012–2024 and an
   `onet-job-trend-analyzer`.
@@ -318,7 +318,7 @@ chapter (inverts fit-first instinct), not the hardest to source.
 ## Chapter 11 — Resumes That Survive the Filter
 
 **Existing source:**
-- `SCRIPTS/resumes/README.md` — the Markdown-CV → ATS-safe PDF pipeline
+- `scripts/resumes/README.md` — the Markdown-CV → ATS-safe PDF pipeline
   (`generate-pdf.mjs`, Playwright/Chromium, `npm run resumes:pdf`), anonymized
   example CVs in `resumes/`.
 - `…/80-days-day-06` Win #2 — "Resume Strategy Intelligence": using the detected
@@ -336,20 +336,20 @@ breaks parsers, why) is thin relative to other chapters.
 
 # ACT THREE — APPLY
 
-## Chapter 12 — Modes: Operating the Engine
+## Chapter 12 — Skills: Operating the Engine
 
 **Existing source:**
-- `modes/README.md` — the full mode taxonomy: active (`scan`, `pipeline`,
+- `skills/README.md` — the full skill taxonomy: active (`scan`, `pipeline`,
   `oferta`, `tracker`, `pdf`) vs. draft/helper (`apply`, `auto-pipeline`,
   `batch`, `contacto`, `deep`, `followup`, `interview-prep`, `latex`, `ofertas`,
-  `project`, `training`), plus the "check whether a draft mode calls real scripts
+  `project`, `training`), plus the "check whether a draft skill calls real scripts
   and logs" rule.
-- Each individual `modes/*.md` recipe.
-- `modes/RUN_LOG.md` — the logging discipline.
+- Each individual `skills/*.md` recipe.
+- `skills/RUN_LOG.md` — the logging discipline.
 - SDD **§3 Core User Flows** — primary daily decision, the no-valid-targets
   failure path, the profile-setup administrative flow.
 
-**Readiness:** Strong — modes are fully documented.
+**Readiness:** Strong — skills are fully documented.
 
 **Gaps to write:**
 - A single end-to-end narrative: one role taken from URL → `scan` → `pipeline`
@@ -365,9 +365,9 @@ breaks parsers, why) is thin relative to other chapters.
 - `plain-summary` feature 5 — log every decision **including skips**; the
   counterintuitive target **skip rate ≥ 50%**; the daily allocation summary that
   reminds the reader how much network/portfolio time remains.
-- `data/ats/application-patterns-audit.md` + `SCRIPTS/ats/analyze_patterns.py` —
+- `data/ats/application-patterns-audit.md` + `scripts/ats/analyze_patterns.py` —
   the pattern-analysis scaffold.
-- `modes/tracker.md` and `modes/patterns.md`.
+- `skills/tracker.md` and `skills/patterns.md`.
 
 **Readiness:** Strong — schema and metric defined.
 

@@ -569,7 +569,7 @@ Overwrite any existing graphics.
 Iterates through every file in `chapters/` and enriches it in place:
 - Converts `<!-- → [TABLE:` comments into rendered markdown tables
 - Converts `<!-- → [IMAGE:` / graphic comments into:
-  - A static SVG → saved to `images/` → converted to PNG via `SCRIPTS/svg-to-png.mjs`
+  - A static SVG → saved to `images/` → converted to PNG via `scripts/svg-to-png.mjs`
   - An interactive D3 HTML file → saved to `d3/`
   - A markdown image link inserted into the chapter
   - An entry added to the chapter's `## Prompts` section
@@ -582,7 +582,7 @@ Iterates through every file in `chapters/` and enriches it in place:
 
 #### SETUP — run once before processing any chapter
 
-1. Confirm the working directory contains `chapters/`, `images/`, `d3/`, `SCRIPTS/`, and `metadata.yaml`.
+1. Confirm the working directory contains `chapters/`, `images/`, `d3/`, `scripts/`, and `metadata.yaml`.
 2. If `images/` or `d3/` do not exist, create them.
 3. Confirm `node` is available: run `node --version`. If it fails, stop and report.
 4. Confirm `sharp` is installed: run `node -e "import('sharp').then(() => console.log('ok'))"`. If it fails, run `npm install` from the book root before proceeding.
@@ -742,7 +742,7 @@ Insert the image above the original comment (and any adjacent stub `![Figure …
 *Figure {N.N} — {short title from the description}*
 ```
 
-The link points to the PNG (not the SVG). The PNG is produced by `SCRIPTS/svg-to-png.mjs` in the post-pass step.
+The link points to the PNG (not the SVG). The PNG is produced by `scripts/svg-to-png.mjs` in the post-pass step.
 
 ---
 
@@ -800,7 +800,7 @@ If it does exist:
 After all chapters are processed, run:
 
 ```bash
-node SCRIPTS/svg-to-png.mjs
+node scripts/svg-to-png.mjs
 ```
 
 Converts every `images/**/*.svg` to 300dpi PNG. Idempotent — skips PNGs newer than their SVG source.
@@ -963,7 +963,7 @@ Each data-encoding color must occupy a distinct luminance band. If any two data 
 
 After all chapters:
 
-5. PASS 4 — `node SCRIPTS/svg-to-png.mjs` — SVG → 300dpi PNG
+5. PASS 4 — `node scripts/svg-to-png.mjs` — SVG → 300dpi PNG
 
 Process in filename order. On error, log and continue.
 

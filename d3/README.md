@@ -27,5 +27,5 @@ To regenerate, re-run the Cowork enrichment prompt against the chapter.
 
 SVG → PNG conversion:
 ```bash
-node SCRIPTS/svg-to-png.mjs
+node scripts/svg-to-png.mjs
 ```

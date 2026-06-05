@@ -33,7 +33,7 @@ The figure **scripts** are run, not pasted (see *The scripts* at the end of this
 
 **Runs in:** Cowork or Codex for the figure pipeline; CAJAL itself runs in any chat assistant (paste a chapter or a concept). The SVG Style Guide below is reference, not a prompt to paste.
 
-**Dependencies:** the chapter text or concept to illustrate (or `chapters/*.md`). For rendering: `pantry/*-cajal.md` plans and `SCRIPTS/svg-to-png.mjs` (Node 18+, `sharp`).
+**Dependencies:** the chapter text or concept to illustrate (or `chapters/*.md`). For rendering: `pantry/*-cajal.md` plans and `scripts/svg-to-png.mjs` (Node 18+, `sharp`).
 
 **Produces:** SCOPE figure prompts; the renderer writes SVGs to `images/`, 300-DPI PNGs, and optional D3 HTML to `d3/`.
 
@@ -985,7 +985,7 @@ Each data-encoding color must occupy a distinct luminance band. If any two data 
 
 After all chapters:
 
-5. PASS 4 — `node SCRIPTS/svg-to-png.mjs` — SVG → 300dpi PNG
+5. PASS 4 — `node scripts/svg-to-png.mjs` — SVG → 300dpi PNG
 
 Process in filename order. On error, log and continue.
 
@@ -1022,7 +1022,7 @@ Process in filename order. On error, log and continue.
 
 These run; you do not paste them. They live in the book repository.
 
-- **`SCRIPTS/svg-to-png.mjs`** — converts every new SVG in `images/` to a 300-DPI PNG (the publication artifact Kindle renders reliably). Requires Node 18+ and the `sharp` package (`cd SCRIPTS/ && npm install sharp`). Run: `node SCRIPTS/svg-to-png.mjs` from the book root.
+- **`scripts/svg-to-png.mjs`** — converts every new SVG in `images/` to a 300-DPI PNG (the publication artifact Kindle renders reliably). Requires Node 18+ and the `sharp` package (`cd scripts/ && npm install sharp`). Run: `node scripts/svg-to-png.mjs` from the book root.
 - **`graphs.sh`** — local helper that processes `<!-- → [TYPE: …] -->` placeholder comments in `chapters/` into placeholder images and rendered tables, for fast iteration without Cowork. Run: `./graphs.sh` (all chapters) or `./graphs.sh chapters/01-foo.md` (one). Always run from the repo root.
 - **`build.sh`** — the final build (see Appendix J): assembles `metadata.yaml` + `chapters/*.md` into the EPUB and PDF via Pandoc. Run: `./build.sh` from the book root.
 

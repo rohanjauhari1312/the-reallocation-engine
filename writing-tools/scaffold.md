@@ -31,7 +31,7 @@ This is the script behind Chapter 5 (*Book Scaffold*). Unlike the prompt appendi
 
 **Dependencies:** none required. *Optional:* a `TIKTOC.md` to scaffold from (`--tiktoc TIKTOC.md`).
 
-**Produces:** a complete book directory — planning files, `chapters/` stubs, `pantry/`, `images/`, `d3/`, `SCRIPTS/`.
+**Produces:** a complete book directory — planning files, `chapters/` stubs, `pantry/`, `images/`, `d3/`, `scripts/`.
 
 ---
 
@@ -76,7 +76,7 @@ chapters/
 pantry/                 ← fragments, snippets, research notes
 images/                 ← figures as PNG (the book uses these)
 d3/                     ← interactive D3 HTML versions
-SCRIPTS/
+scripts/
 ```
 
 The `vision.md`, `architecture.md`, `chapters-spec.md`, and `risks.md` files map one-to-one onto the four Tic TOC phases — the scaffold is the spec made into a directory. If those files come out thin, the spec was thin, and the fix is in Tic TOC (Appendix A), not here.

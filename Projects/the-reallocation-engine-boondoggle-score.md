@@ -159,12 +159,12 @@ the directory structure and empty placeholder files.
 Here is the data contract. User-layer files (never auto-updated, 
 contain my personal data):
   cv.md, config/profile.yml, config/profile.example.yml,
-  modes/_profile.md, article-digest.md, data/applications.md,
+  skills/_profile.md, article-digest.md, data/applications.md,
   data/pipeline.md
 
 System-layer files (pipeline logic, updatable):
-  modes/_shared.md, modes/evaluate.md, modes/score.md,
-  modes/frame.md, modes/track.md, modes/onboard.md,
+  skills/_shared.md, skills/evaluate.md, skills/score.md,
+  skills/frame.md, skills/track.md, skills/onboard.md,
   data/80days-snapshot.csv (placeholder), CLAUDE.md, 
   .gitignore, README.md
 
@@ -179,7 +179,7 @@ Generate:
    "# The Reallocation Engine Agent Instructions — to be completed in Step 6"
 
 Output each file in a labeled code block.
-Do not write the content of the modes/ files yet.
+Do not write the content of the skills/ files yet.
 Do not invent features not listed here.
 ```
 
@@ -242,7 +242,7 @@ The CLAUDE.md must include these sections in this order:
      conflicts with my visa expiration
    - Never fabricate metrics, skills, or experience
    - Always stop before the human gate and wait for explicit confirmation)
-6. Skill Modes (a table — to be filled in as modes are built in later steps)
+6. Skills (a table — to be filled in as skills are built in later steps)
 7. Data Contract (copy the user-layer and system-layer file lists from 
    the SDD verbatim)
 
@@ -297,9 +297,9 @@ Write your revised weight structure. You will hand this to Claude in Step 8.
 **PROMPT:**
 ```
 I am building the scoring core of The Reallocation Engine, a reallocation engine for 
-international student job searches. I need you to write two mode files:
+international student job searches. I need you to write two skill files:
 
-FILE 1: modes/score.md
+FILE 1: skills/score.md
 This file contains the Bayesian scoring logic for evaluating a job posting.
 
 It must include:
@@ -318,7 +318,7 @@ It must include:
 - Output format: a structured score report with each dimension shown 
   separately before the composite, so the student can audit the math
 
-FILE 2: modes/evaluate.md  
+FILE 2: skills/evaluate.md  
 This file contains the role evaluation workflow — what the agent does 
 when the student pastes a job URL or description.
 
@@ -329,8 +329,8 @@ It must include:
 3. Query 80 Days dataset for company sponsorship score
 4. Run CV-JD fit assessment (read cv.md, compare to JD)
 5. Assess role liveness signals
-6. Calculate composite score using modes/score.md
-7. Output: score report in the format specified in modes/score.md
+6. Calculate composite score using skills/score.md
+7. Output: score report in the format specified in skills/score.md
 8. If recommendation is APPLY or CONSIDER: ask student to confirm 
    before generating any materials
 9. STOP — wait for student confirmation before proceeding to framing
@@ -344,9 +344,9 @@ Rules for both files:
 Output each file in a labeled code block.
 ```
 
-**EXPECTED OUTPUT:** Two mode files in labeled code blocks. `modes/score.md` contains a complete, executable scoring formula with your weights, not the SDD's placeholder weights. `modes/evaluate.md` contains a numbered workflow where Step 2 is a hard gate check — if you chose hard gate in Step 7, SKIP fires before any other calculation.
+**EXPECTED OUTPUT:** Two skill files in labeled code blocks. `skills/score.md` contains a complete, executable scoring formula with your weights, not the SDD's placeholder weights. `skills/evaluate.md` contains a numbered workflow where Step 2 is a hard gate check — if you chose hard gate in Step 7, SKIP fires before any other calculation.
 
-**HANDOFF CONDITION:** Read the composite score formula in `modes/score.md`. Plug in a hypothetical: P(sponsorship) = 0.7, P(fit) = 0.6, P(real) = 0.8, visa_timeline_factor = 1.0. Calculate the composite by hand. Does the number match what the formula would produce? If not, the formula has an error. Fix it before proceeding.
+**HANDOFF CONDITION:** Read the composite score formula in `skills/score.md`. Plug in a hypothetical: P(sponsorship) = 0.7, P(fit) = 0.6, P(real) = 0.8, visa_timeline_factor = 1.0. Calculate the composite by hand. Does the number match what the formula would produce? If not, the formula has an error. Fix it before proceeding.
 
 **DEPENDENCY:** Step 7 complete.
 
@@ -381,7 +381,7 @@ Write down what you would change and why. If you change the weights, return to S
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** The SDD Component 2 (80 Days Sponsorship Scorer) documentation. The SDD data contract. The verified `modes/score.md` from Step 8.
+**CONTEXT REQUIRED:** The SDD Component 2 (80 Days Sponsorship Scorer) documentation. The SDD data contract. The verified `skills/score.md` from Step 8.
 
 **PROMPT:**
 ```
@@ -396,8 +396,8 @@ The 80 Days dataset contains these fields (at minimum):
 
 I need you to write two things:
 
-FILE 1: modes/score-sponsorship.md
-A mode file containing:
+FILE 1: skills/score-sponsorship.md
+A skill file containing:
 - The sponsorship scoring formula using these exact weights from the SDD:
   LCA filing rate (3yr): 0.40
   H-1B approval rate: 0.30
@@ -423,7 +423,7 @@ A Node.js script that:
 2. Accepts a company name as a command-line argument
 3. Fuzzy-matches the company name against the dataset 
    (handle case, punctuation, "Inc."/"Corp." variants)
-4. Runs the scoring formula from modes/score-sponsorship.md
+4. Runs the scoring formula from skills/score-sponsorship.md
 5. Outputs a JSON result with: 
    tier, score, confidence, lca_count, h1b_approval_rate, 
    funding_amount, funding_date, match_type (exact/fuzzy/not_found)
@@ -441,7 +441,7 @@ Use only Node.js standard library plus csv-parse (npm package).
 No other dependencies.
 ```
 
-**EXPECTED OUTPUT:** Two labeled code blocks. `modes/score-sponsorship.md` has complete scoring logic including all four missing-data handling rules. `scripts/query-sponsorship.mjs` handles exact match, fuzzy match, and not-found cases with explicit JSON output for each. Error handling covers missing CSV file and empty input.
+**EXPECTED OUTPUT:** Two labeled code blocks. `skills/score-sponsorship.md` has complete scoring logic including all four missing-data handling rules. `scripts/query-sponsorship.mjs` handles exact match, fuzzy match, and not-found cases with explicit JSON output for each. Error handling covers missing CSV file and empty input.
 
 **HANDOFF CONDITION:** Read the fuzzy matching logic in the script. Test mentally: does "Genentech Inc." match "Genentech"? Does "Boston Scientific Corporation" match "Boston Scientific"? Does "MIT" match "MIT Lincoln Laboratory"? The last case should NOT match — specificity matters. If the fuzzy logic is too aggressive, it will return sponsorship scores for the wrong company.
 
@@ -515,7 +515,7 @@ Show a diff summary at the end: what changed and why.
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** The verified `modes/score.md` and `modes/evaluate.md` from Step 8. The `modes/score-sponsorship.md` from Step 10. The SDD Component 4 (OPT Framing Generator) in full. The verified `config/profile.yml`.
+**CONTEXT REQUIRED:** The verified `skills/score.md` and `skills/evaluate.md` from Step 8. The `skills/score-sponsorship.md` from Step 10. The SDD Component 4 (OPT Framing Generator) in full. The verified `config/profile.yml`.
 
 **PROMPT:**
 ```
@@ -523,7 +523,7 @@ I am building the OPT Framing Generator for The Reallocation Engine. This compon
 generates visa-aware application materials after the student has 
 confirmed they want to apply to a role.
 
-I need you to write modes/frame.md — the framing mode file.
+I need you to write skills/frame.md — the framing skill file.
 
 It must contain:
 
@@ -597,10 +597,10 @@ SECTION 5: The human gate
   Type REVISE [section] to request changes.
   Do not submit without completing this checklist."
 
-Output modes/frame.md in a labeled code block.
+Output skills/frame.md in a labeled code block.
 ```
 
-**EXPECTED OUTPUT:** `modes/frame.md` with all five sections. Section 1 framing rules are verbatim from the prompt — not paraphrased. Section 5 human gate checklist has exactly five items. The AVOID tier rule outputs an error and stops — it does not generate anything.
+**EXPECTED OUTPUT:** `skills/frame.md` with all five sections. Section 1 framing rules are verbatim from the prompt — not paraphrased. Section 5 human gate checklist has exactly five items. The AVOID tier rule outputs an error and stops — it does not generate anything.
 
 **HANDOFF CONDITION:** Read Section 1 aloud for the Unknown-tier rule. It must say clearly: do not mention OPT, visa status, or work authorization in initial materials. If Claude has softened this to "consider not mentioning" or "you may want to omit," that is a failure. Rewrite before proceeding.
 
@@ -618,10 +618,10 @@ Output modes/frame.md in a labeled code block.
 
 1. Take three companies from your target list — one Proven, one Likely, one Unknown tier.
 2. For each: read the framing rule Claude generated and ask — if a recruiter at this specific company received a cover letter written under this rule, would it help or hurt?
-3. For Unknown-tier companies: is there ever a case where you would voluntarily disclose OPT status in initial materials — for example, if the job description explicitly asks about work authorization? If yes, add this as an exception to Section 1 of `modes/frame.md` directly.
+3. For Unknown-tier companies: is there ever a case where you would voluntarily disclose OPT status in initial materials — for example, if the job description explicitly asks about work authorization? If yes, add this as an exception to Section 1 of `skills/frame.md` directly.
 4. Check the red-flag language list in Section 4. Add any phrases you have used in past applications that got no response. These are empirical data points about your specific application history.
 
-Make any edits directly to `modes/frame.md`. This is a user-layer judgment call — Claude does not make it for you.
+Make any edits directly to `skills/frame.md`. This is a user-layer judgment call — Claude does not make it for you.
 
 **DEPENDENCY:** Step 13 complete.
 
@@ -631,7 +631,7 @@ Make any edits directly to `modes/frame.md`. This is a user-layer judgment call 
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** The SDD Component 5 (Pipeline Tracker) documentation. The verified `config/profile.yml`. The `modes/evaluate.md` output format from Step 8. The SDD canonical status definitions.
+**CONTEXT REQUIRED:** The SDD Component 5 (Pipeline Tracker) documentation. The verified `config/profile.yml`. The `skills/evaluate.md` output format from Step 8. The SDD canonical status definitions.
 
 **PROMPT:**
 ```
@@ -640,8 +640,8 @@ every application decision and produces a daily allocation summary.
 
 I need you to write two things:
 
-FILE 1: modes/track.md
-The tracking mode. It must contain:
+FILE 1: skills/track.md
+The tracking skill. It must contain:
 
 SECTION 1: Tracker schema
 The applications.md tracker uses this exact table structure:
@@ -709,7 +709,7 @@ the correct format.
 Output each in a labeled code block.
 ```
 
-**EXPECTED OUTPUT:** `modes/track.md` with all four sections. Daily allocation summary includes the SKIP rate target (≥50%) and the 3-3-2 time allocation reminder. `data/applications.md` has the header row plus one clearly labeled example entry showing every field populated correctly.
+**EXPECTED OUTPUT:** `skills/track.md` with all four sections. Daily allocation summary includes the SKIP rate target (≥50%) and the 3-3-2 time allocation reminder. `data/applications.md` has the header row plus one clearly labeled example entry showing every field populated correctly.
 
 **HANDOFF CONDITION:** Read the SKIP rate target. It says ≥50%. This is the reallocation principle made concrete: if you are applying to more than half the roles you evaluate, the system is not filtering aggressively enough. If this target makes you uncomfortable, that discomfort is worth examining before your job search begins.
 
@@ -721,17 +721,17 @@ Output each in a labeled code block.
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** The complete `CLAUDE.md` from Step 6. All five mode files (`modes/evaluate.md`, `modes/score.md`, `modes/score-sponsorship.md`, `modes/frame.md`, `modes/track.md`). The SDD onboarding sequence.
+**CONTEXT REQUIRED:** The complete `CLAUDE.md` from Step 6. All five skill files (`skills/evaluate.md`, `skills/score.md`, `skills/score-sponsorship.md`, `skills/frame.md`, `skills/track.md`). The SDD onboarding sequence.
 
 **PROMPT:**
 ```
-I need you to write the onboarding mode for The Reallocation Engine — the first-run 
+I need you to write the onboarding skill for The Reallocation Engine — the first-run 
 experience for a new student configuring the system.
 
-FILE: modes/onboard.md
+FILE: skills/onboard.md
 
-The onboarding mode runs when any of these files are missing:
-  cv.md, config/profile.yml, modes/_profile.md
+The onboarding skill runs when any of these files are missing:
+  cv.md, config/profile.yml, skills/_profile.md
 
 It must guide the student through these steps in order, 
 stopping at each until the student provides the required input:
@@ -799,12 +799,12 @@ STEP 6: First evaluation prompt
 After student types READY:
 "Paste a job URL or description to run your first evaluation."
 
-Write modes/onboard.md in a labeled code block.
+Write skills/onboard.md in a labeled code block.
 ```
 
-**EXPECTED OUTPUT:** `modes/onboard.md` with all six steps. Step 2 requires explicit student confirmation of the visa timeline display before proceeding — not just input, but confirmation. Step 5 honest briefing is verbatim — not paraphrased, not softened. The reallocation target (2+3+3) appears in the briefing exactly.
+**EXPECTED OUTPUT:** `skills/onboard.md` with all six steps. Step 2 requires explicit student confirmation of the visa timeline display before proceeding — not just input, but confirmation. Step 5 honest briefing is verbatim — not paraphrased, not softened. The reallocation target (2+3+3) appears in the briefing exactly.
 
-**HANDOFF CONDITION:** Read Step 5 aloud. The sentence "If you find yourself spending more than 2 hours/day in The Reallocation Engine, the system is failing its core purpose" must appear verbatim. If Claude has removed this sentence or softened it, the onboarding mode has lost its purpose.
+**HANDOFF CONDITION:** Read Step 5 aloud. The sentence "If you find yourself spending more than 2 hours/day in The Reallocation Engine, the system is failing its core purpose" must appear verbatim. If Claude has removed this sentence or softened it, the onboarding skill has lost its purpose.
 
 **DEPENDENCY:** Steps 15 complete.
 
@@ -820,11 +820,11 @@ Write modes/onboard.md in a labeled code block.
 
 1. Start Claude Code in your project directory
 2. Paste the job URL or description
-3. Watch the evaluation execute through `modes/evaluate.md`
+3. Watch the evaluation execute through `skills/evaluate.md`
 4. Observe the sponsorship query hit your 80 Days dataset
 5. Read the composite score and score breakdown
 6. If APPLY: proceed through framing and review the generated materials
-7. Read the human gate checklist in Section 5 of `modes/frame.md`
+7. Read the human gate checklist in Section 5 of `skills/frame.md`
 
 **After the run, audit these specific things:**
 
@@ -844,7 +844,7 @@ Write down every discrepancy. These become your hardening list for Step 18.
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** Your Step 17 hardening list. The specific mode file where each discrepancy originated. The original SDD edge cases for the relevant components.
+**CONTEXT REQUIRED:** Your Step 17 hardening list. The specific skill file where each discrepancy originated. The original SDD edge cases for the relevant components.
 
 **PROMPT:**
 ```
@@ -853,7 +853,7 @@ the following discrepancies:
 
 [PASTE YOUR STEP 17 HARDENING LIST HERE]
 
-For each discrepancy, I need a targeted fix to the relevant mode file.
+For each discrepancy, I need a targeted fix to the relevant skill file.
 Do not rewrite entire files — make surgical changes only.
 
 For each fix:
@@ -899,7 +899,7 @@ Write your answers. If any answer reveals a gap, fix the gap before the first re
 
 **LABOR:** Claude
 
-**CONTEXT REQUIRED:** The complete `README.md` skeleton from Step 4. All mode files. The `config/profile.example.yml` from Step 2. The SDD ethical use section.
+**CONTEXT REQUIRED:** The complete `README.md` skeleton from Step 4. All skill files. The `config/profile.example.yml` from Step 2. The SDD ethical use section.
 
 **PROMPT:**
 ```
@@ -929,11 +929,11 @@ THE REALLOCATION ENGINE (1 paragraph):
   Explain the Bayesian scoring model — that it combines sponsorship 
   history, CV fit, role liveness, and visa timeline into a single 
   apply/skip recommendation. Name each factor. State that weights 
-  are configurable in modes/_profile.md.
+  are configurable in skills/_profile.md.
 
 ADAPTING TO YOUR SITUATION (1 paragraph):
   Explain that the weights, framing rules, and tier thresholds 
-  are designed to be changed. Point to modes/_profile.md as 
+  are designed to be changed. Point to skills/_profile.md as 
   the customization layer. Give two concrete examples: 
   "If you have < 6 months of OPT remaining, increase the 
   visa_timeline_factor weight. If you have a strong referral network,
@@ -957,7 +957,7 @@ Do not add installation troubleshooting, FAQ, or licensing sections
 Output the complete README.md in a labeled code block.
 ```
 
-**EXPECTED OUTPUT:** Complete `README.md` with all six sections populated. "Reallocation engine" appears in the first sentence of What Is This. The SKIP rate target (≥50%) appears in Ethical Use. The Adapting section names `modes/_profile.md` specifically as the customization layer.
+**EXPECTED OUTPUT:** Complete `README.md` with all six sections populated. "Reallocation engine" appears in the first sentence of What Is This. The SKIP rate target (≥50%) appears in Ethical Use. The Adapting section names `skills/_profile.md` specifically as the customization layer.
 
 **HANDOFF CONDITION:** Read the Ethical Use section. All three bullets are present and accurate. If the README has softened "SKIP rate >= 50% is the target" to a suggestion, rewrite it.
 
@@ -1062,7 +1062,7 @@ Depends on: Step 7 (human)
 ---
 
 **STEP 10 · PHASE I · CLAUDE TASK**
-Context: SDD Component 2. Data contract. Verified modes/score.md.
+Context: SDD Component 2. Data contract. Verified skills/score.md.
 ---
 [Full prompt as above]
 ---
@@ -1082,7 +1082,7 @@ Depends on: Step 11 (human)
 ---
 
 **STEP 13 · PHASE B · CLAUDE TASK**
-Context: modes/score.md, modes/evaluate.md, modes/score-sponsorship.md. SDD Component 4. profile.yml.
+Context: skills/score.md, skills/evaluate.md, skills/score-sponsorship.md. SDD Component 4. profile.yml.
 ---
 [Full prompt as above]
 ---
@@ -1102,7 +1102,7 @@ Depends on: Steps 13, 14 (human)
 ---
 
 **STEP 16 · PHASE B · CLAUDE TASK**
-Context: Complete CLAUDE.md. All five mode files. SDD onboarding sequence.
+Context: Complete CLAUDE.md. All five skill files. SDD onboarding sequence.
 ---
 [Full prompt as above]
 ---
@@ -1112,7 +1112,7 @@ Depends on: Step 15
 ---
 
 **STEP 18 · PHASE H · CLAUDE TASK**
-Context: Step 17 hardening list. Relevant mode files. SDD edge cases.
+Context: Step 17 hardening list. Relevant skill files. SDD edge cases.
 ---
 [Full prompt as above — paste hardening list where indicated]
 ---
@@ -1122,11 +1122,11 @@ Depends on: Step 17 (human)
 ---
 
 **STEP 20 · PHASE R · CLAUDE TASK**
-Context: README skeleton. All mode files. profile.example.yml. SDD ethical use section.
+Context: README skeleton. All skill files. profile.example.yml. SDD ethical use section.
 ---
 [Full prompt as above]
 ---
-Handoff condition: "Reallocation engine" in first sentence. SKIP rate ≥50% in Ethical Use. modes/_profile.md named in Adapting section.
+Handoff condition: "Reallocation engine" in first sentence. SKIP rate ≥50% in Ethical Use. skills/_profile.md named in Adapting section.
 Depends on: Step 19 (human)
 
 ---

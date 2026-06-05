@@ -25,7 +25,7 @@ When running this tool, adapt the generic instructions below to this subject:
 
 ---
 
-These are the prompts behind Chapter 9 (*Finishing Pass and Figures*). The **Chapter Finishing Pass** adds an italic subtitle and visual-placeholder comments to each chapter without touching prose. **CAJAL Image Suggest** then reads those chapters and writes a ranked figure plan to `pantry/{chapter-slug}-cajal.md`. Copy whichever you need into your project. The actual SVG/PNG rendering runs through `SCRIPTS/svg-to-png.mjs` (see Appendix I). The maintained copies live in Bear Brown & Company's online prompt library [verify URL at time of writing]; if they differ from this appendix, the online copies are newer.
+These are the prompts behind Chapter 9 (*Finishing Pass and Figures*). The **Chapter Finishing Pass** adds an italic subtitle and visual-placeholder comments to each chapter without touching prose. **CAJAL Image Suggest** then reads those chapters and writes a ranked figure plan to `pantry/{chapter-slug}-cajal.md`. Copy whichever you need into your project. The actual SVG/PNG rendering runs through `scripts/svg-to-png.mjs` (see Appendix I). The maintained copies live in Bear Brown & Company's online prompt library [verify URL at time of writing]; if they differ from this appendix, the online copies are newer.
 
 ---
 

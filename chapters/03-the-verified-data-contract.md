@@ -15,7 +15,7 @@ The whole architecture of this book is built on that distinction. One answer is 
 
 I've seen job-search systems — and empirical systems of all kinds — that try to manage the fluency problem with caveats: add a disclaimer, note that the model might be wrong, invite the user to verify. This doesn't work, and it doesn't work for a specific reason. A caveat lives outside the output. It is a warning label on a product, not a change to what the product contains. If the number inside the output was produced by a language model filling in a plausible-sounding value, the caveat is decoration on a fabrication.
 
-The contract is different because it is a *prior constraint on what gets to enter the system at all*, not an advisory attached to what came out. The rule is stated once, in the shared configuration that every mode in this system reads before doing anything else: **Run the script and read the audit before you prompt. Never invent a count, a rate, or a coverage number.**
+The contract is different because it is a *prior constraint on what gets to enter the system at all*, not an advisory attached to what came out. The rule is stated once, in the shared configuration that every skill in this system reads before doing anything else: **Run the script and read the audit before you prompt. Never invent a count, a rate, or a coverage number.**
 
 That is it. One rule. The simplicity is intentional. Complex rules are negotiated; a one-rule contract is harder to quietly break. The model's role in this system is to help you *read* data — to frame a finding, identify what's interesting about a number, suggest what to look at next. It is not permitted to be the source of a number. Sources of truth in this system are specific things: script outputs, audit reports, logged runs. Not the model's best guess at what the number probably is.
 
@@ -23,11 +23,21 @@ That is it. One rule. The simplicity is intentional. Complex rules are negotiate
 
 The verified-data contract is not a philosophy statement. It is enforced by the architecture. There are three subsystems that produce the numbers this book is built on, and each of them writes to auditable records you can read and question.
 
-<!-- → [DIAGRAM: Three boxes labeled SCRIPTS/sec/ (funding), SCRIPTS/ats/ (postings and liveness), SCRIPTS/bls/ (role quality), each with an arrow pointing to a corresponding *-audit.md output, all feeding into RUN_LOG.md. Caption: "The three pipelines and where their output lives — every number traces back through this graph."] -->
+<!-- → [DIAGRAM: Three boxes labeled scripts/sec/ (funding), scripts/ats/ (postings and liveness), scripts/bls/ (role quality), each with an arrow pointing to a corresponding *-audit.md output, all feeding into RUN_LOG.md. Caption: "The three pipelines and where their output lives — every number traces back through this graph."] -->
 
-`SCRIPTS/sec/` pulls from SEC filings to measure company funding. When a company raises a round or files material financials, that event is in the public record. The script finds it; the audit reports what was found and what was dropped. `SCRIPTS/ats/` queries job-board data to measure whether a company is actively posting and whether particular openings are live. `SCRIPTS/bls/` draws on Bureau of Labor Statistics data to assess role quality — compensation, demand trajectory, geographic concentration. Each subsystem writes an audit: a record of what the pipeline did on a given run, how many rows it processed, what coverage it achieved, what it couldn't match.
+`scripts/sec/` pulls from SEC filings to measure company funding. When a company raises a round or files material financials, that event is in the public record. The script finds it; the audit reports what was found and what was dropped. `scripts/ats/` queries job-board data to measure whether a company is actively posting and whether particular openings are live. `scripts/bls/` draws on Bureau of Labor Statistics data to assess role quality — compensation, demand trajectory, geographic concentration. Each subsystem writes an audit: a record of what the pipeline did on a given run, how many rows it processed, what coverage it achieved, what it couldn't match.
 
 `DATA_CONTRACT.md` defines what data exists and where it lives — including which files are private (your own application records, credentials, anything that identifies you personally) and how those are handled. `RUN_LOG.md` is the system's memory: every run leaves a trace, so a decision you make today on the strength of a number can be reconstructed and questioned tomorrow. This is the same practice good empirical work has always demanded — state your method, show your coverage, let a claim be checked.
+
+## The tool prefers what it already trusts
+
+There is a mechanism underneath the contract I haven't named yet, and it is the part people miss when they picture a verification tool. They imagine it reaching out to the network every time — hitting the Department of Labor server, re-downloading the disclosure file, re-counting from scratch. That is not what happens, and the difference is the whole reason the contract is cheap to keep.
+
+Each of these tools checks for **local verified data first**. Once the DOL disclosure data has been downloaded and checked, it lives in a local store. When a script runs, it asks a prior question before it asks the network anything: *do I already have verified data for this, and is it still fresh?* If the answer is yes, the script reads the local copy and never touches the network. The audit says so plainly — *served from cache* — so you can see that this run rested on data already verified, not on a fresh pull nobody checked.
+
+Only when the local answer is no — the data is missing, or older than the freshness window the contract defines — does the tool go and fetch. And fetching is not the same as trusting. The moment new data arrives it is **verified on arrival**: the schema is what was expected, the row counts are sane, the source is the one it claims to be. Only then is it written to the local store, and only then does a line go into the run log recording that a fetch happened and what it pulled. The network is the fallback, not the default.
+
+This is not mainly an optimization for speed, though it is faster. It is what makes a run **reproducible**. A number you cited last Tuesday can be regenerated today from the same local verified data, because the tool did not silently re-pull a changed file underneath you. When the data genuinely changes — a new quarter of filings drops — the fetch is logged, visible, and dated, so the change is a recorded event instead of a mystery. Verified-once-then-cached is how "never invent a number" stays affordable: you are not re-earning trust on every run, you are reusing trust you already audited.
 
 ## The smallest honest thing you can do right now
 
@@ -37,7 +47,7 @@ Before you understand every component, before the sponsorship pipeline and the A
 npm run ats:verify
 ```
 
-This calls `SCRIPTS/ats/verify-pipeline.mjs`, which checks the tracker and scan data for internal consistency and prints what it found. The output is the audit. I want you to run this not because you need the result yet, but because there is a specific feeling I want you to have: the difference between being told the data is fine and *seeing the check pass*. One of those is someone's word. The other is evidence. The contract is the decision to require the second.
+This calls `scripts/ats/verify-pipeline.mjs`, which checks the tracker and scan data for internal consistency and prints what it found. The output is the audit. I want you to run this not because you need the result yet, but because there is a specific feeling I want you to have: the difference between being told the data is fine and *seeing the check pass*. One of those is someone's word. The other is evidence. The contract is the decision to require the second.
 
 <!-- → [TABLE: Three columns — Pipeline, What it verifies, What the audit reports. Rows: ats:verify / tracker-scan consistency / row counts, coverage, drop reasons; sec:verify / filing-record completeness / companies matched, date range, gaps; bls:verify / role-quality data freshness / series IDs, last update, missing occupations. Caption: "The three verification commands and what each audit tells you."] -->
 
@@ -65,7 +75,9 @@ The contract stops you from building on fiction. It does not give you omniscienc
 
 ## The shape of everything that follows
 
-Every chapter from here forward builds one of the three sources of truth or shows you how to read what they produce. Chapter 4 builds the funding detector — SEC filings, round size, recency, the money that forces companies to hire. Chapter 5 builds the sponsorship pipeline. Chapter 6 builds the posting liveness check. Each of them opens by reading the shared contract, each of them writes to an audit, each of them contributes a line to the run log.
+Before any of those tools, two chapters finish the method this one began. Chapter 4 shows that every tool here is a *skill* with two customers — the AI that runs it and the human who maintains it — and that you therefore write each one twice. Chapter 5 takes the floor this chapter laid down (the numbers are real) and asks the harder question the contract cannot answer on its own: are they the *right* numbers, measured the right way?
+
+Then the building starts. Every chapter from there forward builds one of the three sources of truth or shows you how to read what they produce. Chapter 6 builds the funding detector — SEC filings, round size, recency, the money that forces companies to hire. Chapter 7 builds the sponsorship pipeline. Chapter 8 builds the posting liveness check. Each of them opens by reading the shared contract, each of them writes to an audit, each of them contributes a line to the run log.
 
 The prime directive is already set: run the script and read the audit before you prompt. Never invent a count, a rate, or a coverage number. From here, the work is building the scripts worth running.
 

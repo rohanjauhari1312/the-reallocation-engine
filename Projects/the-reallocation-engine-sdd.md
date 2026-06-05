@@ -397,7 +397,7 @@ This week:
 ```
 cv.md                     # Canonical CV in markdown
 config/profile.yml        # Identity, visa timeline, target roles, comp floor
-modes/_profile.md         # Scoring weight overrides, framing preferences
+skills/_profile.md         # Scoring weight overrides, framing preferences
 article-digest.md         # Proof points and portfolio metrics
 data/applications.md      # Application tracker
 data/pipeline.md          # Pending URL inbox
@@ -405,11 +405,11 @@ data/pipeline.md          # Pending URL inbox
 
 ### System layer (updatable — pipeline logic)
 ```
-modes/_shared.md          # Scoring system, global rules
-modes/evaluate.md         # Role evaluation instructions
-modes/score.md            # Bayesian scoring prompt
-modes/frame.md            # OPT framing generator
-modes/track.md            # Tracker management
+skills/_shared.md          # Scoring system, global rules
+skills/evaluate.md         # Role evaluation instructions
+skills/score.md            # Bayesian scoring prompt
+skills/frame.md            # OPT framing generator
+skills/track.md            # Tracker management
 data/80days-snapshot.csv  # Sponsorship dataset (refreshable)
 ```
 

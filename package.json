@@ -4,14 +4,14 @@
   "type": "module",
   "description": "The Reallocation Engine",
   "scripts": {
-    "ats:dedup": "node SCRIPTS/ats/dedup-tracker.mjs",
-    "ats:liveness": "node SCRIPTS/ats/check-liveness.mjs",
-    "ats:merge": "node SCRIPTS/ats/merge-tracker.mjs",
-    "ats:normalize": "node SCRIPTS/ats/normalize-statuses.mjs",
-    "ats:scan": "node SCRIPTS/ats/scan.mjs",
-    "ats:verify": "node SCRIPTS/ats/verify-pipeline.mjs",
-    "resumes:pdf": "node SCRIPTS/resumes/generate-pdf.mjs",
-    "svg-to-png": "node SCRIPTS/svg-to-png.mjs"
+    "ats:dedup": "node scripts/ats/dedup-tracker.mjs",
+    "ats:liveness": "node scripts/ats/check-liveness.mjs",
+    "ats:merge": "node scripts/ats/merge-tracker.mjs",
+    "ats:normalize": "node scripts/ats/normalize-statuses.mjs",
+    "ats:scan": "node scripts/ats/scan.mjs",
+    "ats:verify": "node scripts/ats/verify-pipeline.mjs",
+    "resumes:pdf": "node scripts/resumes/generate-pdf.mjs",
+    "svg-to-png": "node scripts/svg-to-png.mjs"
   },
   "dependencies": {
     "glob": "^10.0.0",

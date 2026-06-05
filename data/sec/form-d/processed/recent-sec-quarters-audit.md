@@ -7,7 +7,7 @@
 ## Summary
 
 The four requested SEC Form D quarters were downloaded, extracted, and
-processed with the maintained pipeline in `SCRIPTS/sec/`.
+processed with the maintained pipeline in `scripts/sec/`.
 
 | Quarter | Processed JSON | Companies | Related persons | JSON size |
 |---|---|---:|---:|---:|

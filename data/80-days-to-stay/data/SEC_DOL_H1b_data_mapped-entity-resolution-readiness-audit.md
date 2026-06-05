@@ -20,7 +20,7 @@ codes from the source H-1B/LCA records.
 
 ## What Was Added
 
-`SCRIPTS/sec/entity_resolution.py` now provides a rerunnable entity-resolution
+`scripts/sec/entity_resolution.py` now provides a rerunnable entity-resolution
 pipeline for when the raw LCA table is available.
 
 Join priority:
@@ -35,7 +35,7 @@ The script writes both a resolved CSV and a Markdown `-audit.md` report.
 Example:
 
 ```bash
-python3 SCRIPTS/sec/entity_resolution.py \
+python3 scripts/sec/entity_resolution.py \
   --sec data/80-days-to-stay/data/SEC_DOL_H1b_data_mapped.csv \
   --lca data/lca/raw/LCA_Disclosure_Data.csv \
   --output data/lca/resolved/sec_lca_entity_resolution.csv \
@@ -44,7 +44,7 @@ python3 SCRIPTS/sec/entity_resolution.py \
 
 ## Dependency Note
 
-`rapidfuzz` is now declared in `SCRIPTS/sec/requirements.txt`. If it is not
+`rapidfuzz` is now declared in `scripts/sec/requirements.txt`. If it is not
 installed, the script falls back to Python's standard-library `difflib`, which
 is slower and less faithful to token-set matching.
 

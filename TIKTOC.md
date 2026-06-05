@@ -5,14 +5,14 @@
 **Series:** Irreducibly Human: What AI Can and Can't Do · Humanitarians AI
 **Author:** Nik Bear Brown · ni.brown@neu.edu · Bear Brown & Company
 **Publisher:** Bear Brown, LLC · 2026
-**Document:** Full TOC Draft — compiled from the repository (book.md, README.md, projects/, modes/, SCRIPTS/)
+**Document:** Full TOC Draft — compiled from the repository (book.md, README.md, projects/, skills/, scripts/)
 **Version:** 1.0
 **Status:** Pre-proposal — planning files (vision/architecture/chapters-spec/risks) were empty templates; this TOC is synthesized from the working system. Two blockers before proposal (see Risks 1 and 6).
 
 > **Note on synthesis.** The four Tik TOC phase files in this directory were
 > unfilled templates at compile time. This document was synthesized by reading
 > the actual system — the introduction draft, the plain-language summary, the
-> Boondoggle build score, the `modes/` recipes, and the `SCRIPTS/` subsystems.
+> Boondoggle build score, the `skills/` recipes, and the `scripts/` subsystems.
 > Content extracted from those sources is stated plainly. Content inferred to
 > complete the architecture is marked `[INFERRED]`. Genuine gaps that need the
 > author's decision are marked `[NEEDS HUMAN INPUT]`.
@@ -186,7 +186,7 @@ sponsorship-seeking candidates and the method is data-first).
 **Primary deployment context:**
 A single reader at a terminal, building the engine in Claude Code on their own
 machine over days, then running it daily through the OPT job search. The
-`modes/` recipes are the runtime; the chapters are the build-and-understand
+`skills/` recipes are the runtime; the chapters are the build-and-understand
 layer; Medhavy/Medhavi can wrap it as an adaptive intelligent-textbook.
 
 **Secondary deployment context:**
@@ -202,8 +202,8 @@ genuinely legal questions to counsel).
 
 **How the TOC signals book type to a reviewer:**
 Each Act Two chapter is anchored to a named public dataset and a maintained
-script subsystem (`SCRIPTS/sec`, `SCRIPTS/ats`, `SCRIPTS/bls`,
-`SCRIPTS/resumes`), with a runnable command and an inspectable output. A
+script subsystem (`scripts/sec`, `scripts/ats`, `scripts/bls`,
+`scripts/resumes`), with a runnable command and an inspectable output. A
 reviewer can see in under ten minutes that this is a build-it handbook, not a
 survey.
 
@@ -322,15 +322,15 @@ job search and the terminal deliverable is the search itself, reallocated.
 
 | Chapter | Dataset / subsystem grounding it |
 |---|---|
-| 4 | SEC Form D — `SCRIPTS/sec/` (who just raised money) |
+| 4 | SEC Form D — `scripts/sec/` (who just raised money) |
 | 5 | SEC + DOL LCA + USCIS H-1B — the 80 Days sponsorship tiers |
-| 6 | ATS detection & liveness — `SCRIPTS/ats/` (is the role real) |
-| 7 | BLS / O\*NET / OEWS — `SCRIPTS/bls/` (is the role any good) |
+| 6 | ATS detection & liveness — `scripts/ats/` (is the role real) |
+| 7 | BLS / O\*NET / OEWS — `scripts/bls/` (is the role any good) |
 | 8 | Visa timeline rules (OPT / STEM OPT / H-1B windows) |
 | 9 | All four probabilities combined → Apply / Consider / Skip |
 | 10 | OPT framing rules calibrated by sponsorship tier |
-| 11 | `SCRIPTS/resumes/` — ATS-safe PDF from Markdown CV |
-| 12–13 | `modes/` recipes + `data/ats/applications.md` tracker |
+| 11 | `scripts/resumes/` — ATS-safe PDF from Markdown CV |
+| 12–13 | `skills/` recipes + `data/ats/applications.md` tracker |
 | 14 | The Gru/Minion build score; the honest run |
 
 ---
@@ -344,7 +344,7 @@ governed by `DATA_CONTRACT.md`:
   `data/80-days-to-stay/` (sponsorship/company source), `data/bls/`
   (O\*NET/OEWS role-quality reference), `data/sec/form-d/` (downloaded and
   extracted Form D quarters), `data/ats/` (scanner config, pipeline, tracker).
-- **Maintained scripts** (`SCRIPTS/`) — the engine's moving parts: `sec/`
+- **Maintained scripts** (`scripts/`) — the engine's moving parts: `sec/`
   (Form D pipeline → company JSON/CSV, entity resolution against DOL LCA),
   `ats/` (Greenhouse/Lever/Ashby providers, unified detector, Playwright
   liveness, pattern audit), `bls/` (compact SOC/OEWS extract), `resumes/`
@@ -357,7 +357,7 @@ governed by `DATA_CONTRACT.md`:
   `data/ats/pipeline.md`, `data/ats/scan-history.tsv`. **Privacy-reviewed
   before any commit.**
 
-**The `modes/` layer is the runtime.** Modes are student-facing operating
+**The `skills/` layer is the runtime.** Skills are student-facing operating
 recipes — `scan`, `pipeline`, `oferta`, `tracker`, `pdf` (active);
 `apply`, `contacto`, `deep`, `followup`, `interview-prep`, `ofertas`,
 `project`, `training` (draft/helper). Their **prime directive**: *run a script,
@@ -394,7 +394,7 @@ in Chapter 1. No separate foundations chapter is required.
 |---|---|---|
 | 1 | (Analyze) Diagnose a fluent-but-ungrounded artifact | Written "what would make this trustworthy?" audit |
 | 2 | (Evaluate) Justify a time allocation against expected return | A personal 3-3-2 plan with reasoning |
-| 3 | (Apply) Apply the verified-data contract to a decision | A mode run logged in `RUN_LOG.md` |
+| 3 | (Apply) Apply the verified-data contract to a decision | A skill run logged in `RUN_LOG.md` |
 | 4 | (Apply) Run the SEC Form D pipeline and read its output | A funded-company shortlist from real filings |
 | 5 | (Evaluate) Assign and defend a sponsorship tier | Tiered company list with evidence per tier |
 | 6 | (Analyze) Classify a posting's liveness and ATS | A live/ghost call with the signals that justify it |
@@ -403,7 +403,7 @@ in Chapter 1. No separate foundations chapter is required.
 | 9 | (Create) Produce an Apply/Consider/Skip decision | A composite score with all four factors sourced |
 | 10 | (Create) Generate tier-calibrated application framing | Materials that never misrepresent authorization |
 | 11 | (Apply) Produce an ATS-safe PDF from a Markdown CV | A rendered CV that survives a parser |
-| 12 | (Apply) Operate the modes as a verified-data runtime | A logged scan→pipeline→oferta sequence |
+| 12 | (Apply) Operate the skills as a verified-data runtime | A logged scan→pipeline→oferta sequence |
 | 13 | (Evaluate) Read the tracker and hold skip rate ≥ 50% | A daily allocation summary with skip rate |
 | 14 | (Create) Execute and defend an honest first real run | A run plus a written "what the machine could not know" |
 
@@ -487,21 +487,21 @@ is only trustworthy if it rests on data, not on a prompt.
 the script and read the audit before you prompt.
 
 **Outcomes:** (Understand) State the prime directive and the sources of truth.
-(Apply) Run one mode end-to-end and log it; (Analyze) distinguish a
+(Apply) Run one skill end-to-end and log it; (Analyze) distinguish a
 data-grounded claim from a model judgment and label each.
 
 **Opening:** Two ways to estimate whether a company sponsors — ask the model, or
 query the records. One is fluent. One is true.
 
-**Core content:** The `modes/_shared.md` contract; sources of truth
-(`DATA_CONTRACT.md`, the `SCRIPTS/` subsystems, the `*-audit.md` reports); the
+**Core content:** The `skills/_shared.md` contract; sources of truth
+(`DATA_CONTRACT.md`, the `scripts/` subsystems, the `*-audit.md` reports); the
 ten verified-data rules; never invent counts, rates, or coverage; the run log
 as memory.
 
 **Worked example:** The same sponsorship question answered both ways, with the
 discrepancy surfaced and explained.
 
-**Exercises:** (Apply) Run a mode against real data and write a `RUN_LOG.md`
+**Exercises:** (Apply) Run a skill against real data and write a `RUN_LOG.md`
 entry. (Analyze) Take a mixed claim and split it into "from the data" vs. "from
 the model," labeling each.
 
@@ -532,7 +532,7 @@ output and identify recently funded firms in a target geography.
 biotech and AI — that have money and need talent and are invisible to anyone
 looking only at brand-name employers.
 
-**Core content:** What Form D is; the `SCRIPTS/sec/` flow and the `data/sec/form-d/`
+**Core content:** What Form D is; the `scripts/sec/` flow and the `data/sec/form-d/`
 `raw/`→`extracted/`→`processed/` layout; deduplication and entity resolution
 against DOL LCA records; funding recency as a hiring signal.
 
@@ -591,7 +591,7 @@ defend the call.
 recent funding — next to a role posted last week at a firm that just closed a
 Series B. One is probably a ghost.
 
-**Core content:** The `SCRIPTS/ats/` subsystem — the unified `detect_ats.py`,
+**Core content:** The `scripts/ats/` subsystem — the unified `detect_ats.py`,
 the zero-token provider `scan.mjs`, Playwright liveness (`check-liveness.mjs`,
 `liveness-core.mjs`); the Greenhouse and Lever production scrapers; ghost jobs
 as growth theater; `analyze_patterns.py` for tracker/scan/pipeline audits.
@@ -620,7 +620,7 @@ wage and employment estimates.
 futures — one in an occupation with rising employment and a strong wage band,
 one in a shrinking one.
 
-**Core content:** `SCRIPTS/bls/extract_soc_occupation_table.py` and the compact
+**Core content:** `scripts/bls/extract_soc_occupation_table.py` and the compact
 table (O\*NET identity, alternate titles, job zones, ability/skill levels, BLS
 OEWS national employment and wage estimates); SOC classification; using
 role-quality as a scoring feature, not a vibe.
@@ -736,13 +736,13 @@ parser that reads them first.
 the application a human eventually reads is the one the parser passed.
 
 **Outcomes:** (Apply) Render an ATS-friendly PDF from a Markdown CV with
-`SCRIPTS/resumes/`. (Analyze) Identify CV structures that break parsers and fix
+`scripts/resumes/`. (Analyze) Identify CV structures that break parsers and fix
 them.
 
 **Opening:** A beautifully designed resume that the ATS reads as a wall of
 garbled text — rejected before a human sees it.
 
-**Core content:** The `SCRIPTS/resumes/generate-pdf.mjs` pipeline (Playwright/
+**Core content:** The `scripts/resumes/generate-pdf.mjs` pipeline (Playwright/
 Chromium, resume-safe Markdown rendering); `npm run resumes:pdf`; ATS-safe
 structure; anonymized example CVs as templates.
 
@@ -760,34 +760,34 @@ under real pressure, with a log.
 ## ACT THREE — APPLY (Chapters 12–14)
 
 *What this act does: stops handing the reader clean single-component tasks and
-starts running the whole engine against a live job search — through the modes,
+starts running the whole engine against a live job search — through the skills,
 the tracker, and an honest first real run.*
 
 ---
 
-### CHAPTER 12 — Modes: Operating the Engine
+### CHAPTER 12 — Skills: Operating the Engine
 
-**One-line:** The reader learns to run the engine through its modes as a
+**One-line:** The reader learns to run the engine through its skills as a
 verified-data runtime — scan, pipeline, evaluate, render — logging every step.
 
 **Outcomes:** (Apply) Operate a `scan → pipeline → oferta` sequence end-to-end.
-(Analyze) Distinguish active modes from draft modes and check whether a mode
+(Analyze) Distinguish active skills from draft skills and check whether a skill
 calls real scripts before trusting it.
 
-**Opening:** The difference between a mode that runs a script and reads an audit,
-and a mode that quietly turns into "ask the model what it thinks."
+**Opening:** The difference between a skill that runs a script and reads an audit,
+and a skill that quietly turns into "ask the model what it thinks."
 
-**Core content:** The `modes/` taxonomy — active (`scan`, `pipeline`, `oferta`,
+**Core content:** The `skills/` taxonomy — active (`scan`, `pipeline`, `oferta`,
 `tracker`, `pdf`) vs. draft/helper (`apply`, `contacto`, `deep`, `followup`,
 `interview-prep`, `ofertas`, `project`, `training`); the run-inspect-record
-loop; `RUN_LOG.md`; the rule that a draft mode is checked for real scripts and
+loop; `RUN_LOG.md`; the rule that a draft skill is checked for real scripts and
 logging before use.
 
 **Worked example:** One target taken from URL through scan, pipeline scoring,
 and an `oferta` evaluation, with each step logged.
 
-**Exercises:** (Apply) Run a full mode sequence on a real role and log it.
-(Analyze) Audit one draft mode: does it call scripts, does it log?
+**Exercises:** (Apply) Run a full skill sequence on a real role and log it.
+(Analyze) Audit one draft skill: does it call scripts, does it log?
 
 **Bridge:** Running the engine produces decisions. Decisions are only worth
 making if you can see whether they worked.
@@ -911,7 +911,7 @@ incomplete. Do not advance to review without resolving these.
 - **Act Two:** one real company or role per chapter, single component, with the
   domain judgment the data could not supply named explicitly.
 - **Act Three:** one continuing case — the reader's own search — carried across
-  modes, tracker, and the honest run. No single right answer; the reader owns
+  skills, tracker, and the honest run. No single right answer; the reader owns
   the judgment.
 
 ## Worked-example format (every chapter)
@@ -1001,16 +1001,16 @@ whether the book is sold, bundled with the tool, or used in courses.]`
 |---|---|---|
 | Three-act build arc (14 chapters) | ESSENTIAL | Low |
 | The five-component engine, documented to build | ESSENTIAL | Medium |
-| SEC Form D pipeline (`SCRIPTS/sec/`) | ESSENTIAL | Built; maintain |
+| SEC Form D pipeline (`scripts/sec/`) | ESSENTIAL | Built; maintain |
 | 80 Days sponsorship scorer + tiers | ESSENTIAL | Medium (data ops) |
-| ATS detection & liveness (`SCRIPTS/ats/`) | ESSENTIAL | Built; maintain |
+| ATS detection & liveness (`scripts/ats/`) | ESSENTIAL | Built; maintain |
 | Visa Timeline Manager | ESSENTIAL | Medium |
 | Bayesian Role Scorer | ESSENTIAL | Medium |
 | OPT Framing Generator + tier rules | ESSENTIAL | Medium |
 | Pipeline Tracker + skip-rate metric | ESSENTIAL | Built; maintain |
-| BLS/O\*NET role-quality extract (`SCRIPTS/bls/`) | IMPORTANT | Built; maintain |
-| Resume → ATS-safe PDF (`SCRIPTS/resumes/`) | IMPORTANT | Built; maintain |
-| `modes/` runtime recipes | IMPORTANT | Drafts exist; harden |
+| BLS/O\*NET role-quality extract (`scripts/bls/`) | IMPORTANT | Built; maintain |
+| Resume → ATS-safe PDF (`scripts/resumes/`) | IMPORTANT | Built; maintain |
+| `skills/` runtime recipes | IMPORTANT | Drafts exist; harden |
 | The Gru/Minion build score (Ch 14) | IMPORTANT | Drafted |
 | `RUN_LOG.md` + verified-data disclosure habit | IMPORTANT | Low |
 | Medhavy/Medhavi adaptive integration | VALUABLE | High (platform) |
@@ -1031,10 +1031,10 @@ and durable.
 | Topic | Reason | Covered better by |
 |---|---|---|
 | Immigration legal advice | Liability; not the book's competence | Licensed immigration counsel |
-| Writing the scraper/pipeline code from scratch | Reader runs maintained scripts | The `SCRIPTS/` subsystems themselves |
+| Writing the scraper/pipeline code from scratch | Reader runs maintained scripts | The `scripts/` subsystems themselves |
 | General (non-sponsorship) career coaching | Dilutes the dominant constraint | *The 2-Hour Job Search*, *Parachute* |
 | Comprehensive ATS coverage beyond GH/Lever/Ashby | Diminishing returns; provider drift | Future provider modules |
-| Interview performance coaching | Adjacent; out of the reallocation core | `interview-prep` draft mode + external |
+| Interview performance coaching | Adjacent; out of the reallocation core | `interview-prep` draft skill + external |
 | Non-U.S. job markets | Data spine is U.S. government records | Out of scope this edition |
 
 All major exclusions are acknowledged in the preface with a pointer to the
@@ -1057,7 +1057,7 @@ is stated once, plainly, and repeated wherever the reader might forget it.
 | 6 | Tool/runtime dependency (Claude Code) and dataset access for non-NEU readers | High | High | **BLOCKER for general release** — specify the runtime and data-access path for readers outside the provisioning institution |
 | 7 | Unsourced job-search statistics undermine credibility | Medium-High | Medium | Source-cite or label every figure before publication (ties to Risk 8) |
 | 8 | Claims of "probability of hire" overpromise precision | Medium | High | Frame scores as decision aids, not predictions; show the limits in every worked example |
-| 9 | Reader can't run scripts (terminal barrier) | Medium | Medium | Ch 1 setup; consider a guided-setup mode; facilitator support |
+| 9 | Reader can't run scripts (terminal barrier) | Medium | Medium | Ch 1 setup; consider a guided-setup skill; facilitator support |
 | 10 | "Avoid"-tier tiering of named companies invites dispute | Low-Medium | Medium | Present as public-record probability, not a verdict; document method |
 
 ## Open questions
@@ -1077,7 +1077,7 @@ is stated once, plainly, and repeated wherever the reader might forget it.
 *Full TOC Draft v1.0 — synthesized from the working repository.*
 *Source files: `chapters/00-introduction.md`, `README.md`,
 `projects/the-reallocation-engine-plain-summary.md`,
-`projects/the-reallocation-engine-boondoggle-score.md`, `modes/`, `SCRIPTS/`,
+`projects/the-reallocation-engine-boondoggle-score.md`, `skills/`, `scripts/`,
 `DATA_CONTRACT.md`.*
 *Two blockers before publisher proposal: Risk 1 (privacy) and Risk 6 (runtime/*
 *data access for general readers). The four Tik TOC phase files remain empty*

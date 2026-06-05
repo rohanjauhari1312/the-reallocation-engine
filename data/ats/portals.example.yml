@@ -2,7 +2,7 @@
 #
 # Copy to data/ats/portals.yml and edit before running:
 #
-#   node SCRIPTS/ats/scan.mjs --dry-run
+#   node scripts/ats/scan.mjs --dry-run
 
 title_filter:
   positive:

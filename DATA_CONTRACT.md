@@ -10,9 +10,9 @@ These files are part of the repo's maintained data-processing system.
 
 | Path | Purpose |
 |---|---|
-| `SCRIPTS/` | Canonical scripts for SEC, ATS, audit, and enrichment workflows. |
-| `SCRIPTS/sec/` | Maintained SEC Form D pipeline. |
-| `SCRIPTS/ats/` | Maintained ATS detection, provider, scanner, and liveness pipeline. |
+| `scripts/` | Canonical scripts for SEC, ATS, audit, and enrichment workflows. |
+| `scripts/sec/` | Maintained SEC Form D pipeline. |
+| `scripts/ats/` | Maintained ATS detection, provider, scanner, and liveness pipeline. |
 | `package.json` | Node runtime dependencies for book/script utilities. |
 
 Rule: prefer adding new automation here, not as loose one-off scripts in `data/`.
@@ -29,7 +29,7 @@ These files are source or upstream reference data. Treat them as provenance.
 | `data/sec/form-d/extracted/` | Extracted SEC quarter TSV files. |
 
 Rule: do not casually rewrite upstream source data. Copy/adapt useful code into
-`SCRIPTS/` and document the provenance.
+`scripts/` and document the provenance.
 
 ## Generated Data Layer
 
@@ -74,7 +74,7 @@ Rule: check privacy and size before committing generated ATS/job-search files.
 
 ## Operating Rules
 
-- Put maintained automation in `SCRIPTS/`.
+- Put maintained automation in `scripts/`.
 - Put audit reports next to the data they audit, using `-audit.md`.
 - Keep upstream source folders intact for provenance.
 - Do not rebuild source datasets from scratch when a mapped or processed asset

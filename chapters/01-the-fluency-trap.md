@@ -105,7 +105,7 @@ The machine will do the typing. The judgment is yours, and it always was. The re
 
 **What Would Change My Mind.** If a replication of the Anthropic trial — or several — found that AI-assisted learners caught up to or surpassed hand-coders on delayed comprehension once they had used the tools for longer, the "comprehension debt" mechanism would need serious revision: it would mean the debt is repaid by familiarity rather than compounding. The current evidence is one well-designed but small (n = 52) study; one study is a finding, not a law.
 
-**Still Puzzling.** I do not fully understand where the line sits between *interrogating* a model and *delegating* to it in real practice. The trial shows the two produce opposite outcomes, but a working analyst does both within the same hour, often within the same prompt. I do not yet know how to teach someone to feel which mode they are in while they are in it — and that, not the statistics, may be the hardest thing this book has to do.
+**Still Puzzling.** I do not fully understand where the line sits between *interrogating* a model and *delegating* to it in real practice. The trial shows the two produce opposite outcomes, but a working analyst does both within the same hour, often within the same prompt. I do not yet know how to teach someone to feel which skill they are in while they are in it — and that, not the statistics, may be the hardest thing this book has to do.
 
 ---
 
@@ -135,7 +135,7 @@ The machine will do the typing. The judgment is yours, and it always was. The re
 
 **Challenge**
 
-9. *Open-ended; points toward Chapter 2.* The chapter identifies the interrogation/delegation split as the variable that determined outcomes in the Anthropic trial — but admits it doesn't yet know how to teach someone to feel which mode they're in while they're in it. Design a simple self-monitoring practice — something a student could do daily during a job search — that would help them notice, in real time, whether they are interrogating or delegating. What signal would they be listening for? *(Difficulty: Challenge)*
+9. *Open-ended; points toward Chapter 2.* The chapter identifies the interrogation/delegation split as the variable that determined outcomes in the Anthropic trial — but admits it doesn't yet know how to teach someone to feel which skill they're in while they're in it. Design a simple self-monitoring practice — something a student could do daily during a job search — that would help them notice, in real time, whether they are interrogating or delegating. What signal would they be listening for? *(Difficulty: Challenge)*
 
 ---
 
