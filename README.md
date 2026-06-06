@@ -14,10 +14,10 @@ The repository implements that thesis through a verified-data architecture:
 
 - source data lives in `data/`;
 - maintained automation lives in `scripts/`;
-- student-facing operating recipes live in `skills/`;
+- student-facing operating recipes live in `recipes/`;
 - generated audits sit beside the data they inspect;
 - private job-search state stays in `data/ats/` and must be reviewed before commit;
-- every skill is expected to run scripts, read audits, label judgments, and log what happened.
+- every recipe is expected to run scripts, read audits, label judgments, and log what happened.
 
 The engine's operating rule is simple: **run the script and read the audit before you prompt; never invent a count, rate, match quality, confidence, or coverage number.**
 
@@ -27,9 +27,9 @@ The engine's operating rule is simple: **run the script and read the audit befor
 flowchart LR
   A["Source Data\n80 Days, SEC, DOL/H-1B, BLS/O*NET, ATS"] --> B["Maintained Scripts\nscripts/sec, scripts/ats, scripts/bls, scripts/resumes"]
   B --> C["Audits And Extracts\n*-audit.md, processed tables, tracker files"]
-  C --> D["Skills Runtime\nscan, pipeline, oferta, tracker, pdf"]
+  C --> D["Recipes Runtime\nscan, pipeline, oferta, tracker, pdf"]
   D --> E["Human Judgment\nApply / Consider / Skip, framing, outreach, portfolio"]
-  E --> F["Run Log\nskills/RUN_LOG.md"]
+  E --> F["Run Log\nlogs/RUN_LOG.md"]
   F --> C
 ```
 
@@ -40,15 +40,16 @@ The architecture has four separable layers.
 `chapters/` contains the manuscript. The chapters teach the conceptual and operational architecture in sequence:
 
 - Chapters 1-3 define the core method: fluency is not correctness, effort must be reallocated by expected return, and factual claims must obey the verified-data contract.
-- Chapters 4-5 explain how skills are written for two customers and how verified records still need epistemic interrogation.
+- Chapters 4-5 explain how recipes are written for two customers and how verified records still need epistemic interrogation.
 - Chapters 6-13 build the domain components: funding, sponsorship, liveness, role quality, visa timing, composite scoring, OPT framing, and ATS-safe resumes.
-- Chapters 14-16 operate and integrate the engine: run skills, maintain the tracker, monitor skip rate, and conduct the first honest run.
+- Chapters 14-16 operate and integrate the engine: run recipes, maintain the tracker, monitor skip rate, and conduct the first honest run.
 - Chapter 97 synthesizes the load-bearing themes.
 
 Planning and architecture files such as `outline.md`, `TIKTOC.md`, `CHAPTER-RESEARCH-MAP.md`, `architecture.md`, and `RESTRUCTURE-PLAN.md` record the editorial and system-design scaffolding around the manuscript.
 
 For the full repository map, see [`docs/repo-structure.md`](docs/repo-structure.md).
-For the human-readable skill map, see [`docs/skills.md`](docs/skills.md).
+For the human-readable recipe map, see [`docs/recipes.md`](docs/recipes.md).
+For the full documentation index, see [`docs/README.md`](docs/README.md).
 
 ### 2. Data Layer
 
@@ -105,32 +106,32 @@ python3 scripts/bls/extract_soc_occupation_table.py
 python3 scripts/ats/analyze_patterns.py
 ```
 
-### 4. Skills Layer
+### 4. Recipes Layer
 
-`skills/` is the runtime recipe layer. A skill is an agentic recipe: a named operation that declares what scripts it calls, what data it reads, what outputs it writes, and what must be logged.
+`recipes/` is the runtime recipe layer. A recipe is an agentic recipe: a named operation that declares what scripts it calls, what data it reads, what outputs it writes, and what must be logged.
 
-The skills are not the engine by themselves. They are the student-facing operating surface over the data and script layers.
+The recipes are not the engine by themselves. They are the student-facing operating surface over the data and script layers.
 
-Active skills:
+Active recipes:
 
-| Skill | Role |
+| Recipe | Role |
 |---|---|
-| `skills/_shared.md` | Shared verified-data contract and logging rules. |
-| `skills/scan.md` | Detect ATS systems and scan portals using `scripts/ats/`. |
-| `skills/pipeline.md` | Process `data/ats/pipeline.md` through verified liveness/scoring steps. |
-| `skills/oferta.md` | Evaluate one role using sponsorship, ATS, BLS/SOC, CV, and timeline evidence. |
-| `skills/tracker.md` | Maintain and inspect `data/ats/applications.md`. |
-| `skills/pdf.md` | Generate ATS-safe PDFs from Markdown CVs using `scripts/resumes/`. |
-| `skills/patterns.md` | Analyze outcome patterns once enough tracker history exists. |
-| `skills/update.md` | Repo-local update and skill-maintenance checklist. |
+| `recipes/_shared.md` | Shared verified-data contract and logging rules. |
+| `recipes/scan.md` | Detect ATS systems and scan portals using `scripts/ats/`. |
+| `recipes/pipeline.md` | Process `data/ats/pipeline.md` through verified liveness/scoring steps. |
+| `recipes/oferta.md` | Evaluate one role using sponsorship, ATS, BLS/SOC, CV, and timeline evidence. |
+| `recipes/tracker.md` | Maintain and inspect `data/ats/applications.md`. |
+| `recipes/pdf.md` | Generate ATS-safe PDFs from Markdown CVs using `scripts/resumes/`. |
+| `recipes/patterns.md` | Analyze outcome patterns once enough tracker history exists. |
+| `recipes/update.md` | Repo-local update and recipe-maintenance checklist. |
 
-Draft/helper skills include `apply.md`, `auto-pipeline.md`, `batch.md`, `contacto.md`, `deep.md`, `followup.md`, `interview-prep.md`, `latex.md`, `ofertas.md`, `project.md`, and `training.md`. Treat draft outputs as model judgment until a specific run proves the skill called real scripts, read real audits, and logged the result.
+Draft/helper recipes include `apply.md`, `auto-pipeline.md`, `batch.md`, `contacto.md`, `deep.md`, `followup.md`, `interview-prep.md`, `latex.md`, `ofertas.md`, `project.md`, and `training.md`. Treat draft outputs as model judgment until a specific run proves the recipe called real scripts, read real audits, and logged the result.
 
-Every skill should follow the loop from Chapter 14:
+Every recipe should follow the loop from Chapter 14:
 
-1. **Run** the skill against a real target.
+1. **Run** the recipe against a real target.
 2. **Inspect** the output and its provenance.
-3. **Record** the run in `skills/RUN_LOG.md`.
+3. **Record** the run in `logs/RUN_LOG.md`.
 
 ## Component Architecture
 
@@ -167,7 +168,7 @@ Relevant paths:
 
 ### Component 4: Role Quality / BLS / O*NET
 
-Chapter 9 maps roles onto SOC/O*NET/BLS signals: wage level, demand, occupational family, job-zone features, and skill/ability structure. This component helps distinguish "can I apply?" from "is this role worth targeting?"
+Chapter 9 maps roles onto SOC/O*NET/BLS signals: wage level, demand, occupational family, job-zone features, and recipe/ability structure. This component helps distinguish "can I apply?" from "is this role worth targeting?"
 
 Relevant paths:
 
@@ -190,8 +191,8 @@ The tracker records Apply / Consider / Skip decisions. A healthy engine should s
 
 Relevant paths:
 
-- `skills/oferta.md`
-- `skills/tracker.md`
+- `recipes/oferta.md`
+- `recipes/tracker.md`
 - `data/ats/applications.md`
 - `scripts/ats/analyze_patterns.py`
 
@@ -203,7 +204,7 @@ Relevant paths:
 | 01 | [The Fluency Trap](chapters/01-the-fluency-trap.md) | Explains why polished AI output is not proof of correctness. |
 | 02 | [The Reallocation Principle](chapters/02-the-reallocation-principle.md) | Reframes job search as expected-return allocation. |
 | 03 | [The Verified-Data Contract](chapters/03-the-verified-data-contract.md) | Establishes the rule: records and audits before prompts. |
-| 04 | [Two Customers](chapters/04-two-customers.md) | Defines skills as two artifacts: AI recipe and human maintenance card. |
+| 04 | [Two Customers](chapters/04-two-customers.md) | Defines recipes as two artifacts: AI recipe and human maintenance card. |
 | 05 | [Verifying the Data](chapters/05-verifying-the-data.md) | Interrogates coverage, base rates, calibration, and warranted verbs. |
 | 06 | [Where the Money Went](chapters/06-where-the-money-went-sec-form-d.md) | Builds the SEC Form D funding evidence pathway. |
 | 07 | [Who Sponsors](chapters/07-who-sponsors-the-80-days-sponsorship-scorer.md) | Builds sponsorship evidence and tiers. |
@@ -213,11 +214,11 @@ Relevant paths:
 | 11 | [The Bayesian Role Scorer](chapters/11-the-bayesian-role-scorer.md) | Combines sponsorship, fit, liveness, and timeline. |
 | 12 | [The OPT Framing Generator](chapters/12-the-opt-framing-generator.md) | Produces honest, tier-calibrated OPT framing. |
 | 13 | [Resumes That Survive the Filter](chapters/13-resumes-that-survive-the-filter.md) | Generates parser-safe resumes and validates extraction. |
-| 14 | [Skills: Operating the Engine](chapters/14-skills-operating-the-engine.md) | Teaches run-inspect-record operation of `skills/`. |
+| 14 | [Recipes: Operating the Engine](chapters/14-recipes-operating-the-engine.md) | Teaches run-inspect-record operation of `recipes/`. |
 | 15 | [The Pipeline Tracker and the Skip Rate](chapters/15-the-pipeline-tracker-and-the-skip-rate.md) | Makes skip a first-class logged decision. |
 | 16 | [The Build and the Honest Run](chapters/16-the-build-and-the-honest-run.md) | Integrates the system through phase-gated build and verification. |
 | 97 | [Fundamental Themes](chapters/97-fundamental-themes.md) | Synthesizes the book's recurring architecture. |
-| 98 | [Appendix: Best Practices](chapters/98-appendix-best-practices.md) | Collects repo, data, script, skill, phase-gate, and logging rules. |
+| 98 | [Appendix: Best Practices](chapters/98-appendix-best-practices.md) | Collects repo, data, script, recipe, phase-gate, and logging rules. |
 
 ## Operating Principles
 
@@ -233,12 +234,12 @@ Relevant paths:
 ## Typical Workflow
 
 1. Configure or inspect ATS targets in `data/ats/`.
-2. Run `skills/scan.md` / `npm run ats:scan` to identify ATS providers and current postings.
-3. Run `skills/pipeline.md` and `npm run ats:verify` to check liveness and pipeline integrity.
-4. Run `skills/oferta.md` for a specific role: sponsorship + fit + liveness + timeline.
-5. Log Apply / Consider / Skip using `skills/tracker.md`.
+2. Run `recipes/scan.md` / `npm run ats:scan` to identify ATS providers and current postings.
+3. Run `recipes/pipeline.md` and `npm run ats:verify` to check liveness and pipeline integrity.
+4. Run `recipes/oferta.md` for a specific role: sponsorship + fit + liveness + timeline.
+5. Log Apply / Consider / Skip using `recipes/tracker.md`.
 6. Run `python3 scripts/ats/analyze_patterns.py` once there is enough tracker history.
-7. Record significant runs, blockers, and artifacts in `skills/RUN_LOG.md`.
+7. Record significant runs, blockers, and artifacts in `logs/RUN_LOG.md`.
 
 ## Privacy And Commit Hygiene
 

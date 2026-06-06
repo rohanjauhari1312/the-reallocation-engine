@@ -6,10 +6,10 @@ This file is for any coding or writing agent operating in this repository.
 
 The repository has two customers:
 
-1. Agents that read instructions, skills, recipes, data contracts, scripts, and gates in order to execute work.
+1. Agents that read instructions, recipes, recipes, data contracts, scripts, and gates in order to execute work.
 2. Humans who must understand what those agents do, why the workflow is safe, and when judgment or intervention is required.
 
-Write agent-facing instructions precisely, but include concise human-readable summaries for recipes, skills, and gates.
+Write agent-facing instructions precisely, but include concise human-readable summaries for recipes, recipes, and gates.
 
 ## Grounding Order
 
@@ -22,7 +22,7 @@ Write agent-facing instructions precisely, but include concise human-readable su
 
 - `scripts/` is canonical. Never create `SCRIPTS/`.
 - `docs/` is for human-readable system documentation.
-- `skills/` is for agent-facing operating recipes.
+- `recipes/` is for agent-facing operating recipes.
 - `chapters/` is for book manuscript content.
 - `data/` is for source data, generated data, and evidence artifacts.
 - `pantry/` is for research and raw/reference material.

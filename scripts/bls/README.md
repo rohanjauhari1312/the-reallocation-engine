@@ -19,7 +19,7 @@ The compact table combines:
 - O*NET occupation identity and descriptions.
 - O*NET alternate titles.
 - O*NET job zones.
-- Selected O*NET ability and skill Level scores.
+- Selected O*NET ability and recipe Level scores.
 - Latest BLS OEWS national employment and wage estimates.
 
 Use the compact table for downstream scoring. Keep the full `data/bls` archive

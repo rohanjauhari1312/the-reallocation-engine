@@ -4,7 +4,7 @@ cowork-agentic-repo.py -- scaffold a Cowork agentic repo that is also a book.
 
 This extends the ordinary book scaffold with the repository structure needed for
 agentic operation: verified local data, vetted scripts, human-readable docs,
-agent-readable skills, phase gates, and root agent instructions.
+agent-readable recipes, phase gates, and root agent instructions.
 
 Usage:
     python3 scripts/cowork-agentic-repo.py "My Book" "Author Name"
@@ -102,7 +102,7 @@ def chapter_stub(number: int) -> str:
 
 ## Agentic Connection
 
-[Explain how this chapter maps to data, scripts, skills, phase gates, or human
+[Explain how this chapter maps to data, scripts, recipes, phase gates, or human
 judgment in the repo.]
 """
 
@@ -116,10 +116,10 @@ This appendix is the operating compact for the repo.
 
 Every operating artifact has two customers:
 
-1. Agents that read skills, scripts, data contracts, and gate definitions.
+1. Agents that read recipes, scripts, data contracts, and gate definitions.
 2. Humans who must understand what agents do, why it is safe, and when to stop.
 
-Skills and recipes are primarily for agents to execute. Each one should begin
+Recipes and recipes are primarily for agents to execute. Each one should begin
 with a human-readable executive summary.
 
 ## Verified Data First
@@ -162,7 +162,7 @@ Do not run a fully automated pipeline until these gates pass:
 
 ## Logging
 
-Use `skills/RUN_LOG.md` for meaningful runs, blockers, generated artifacts, and
+Use `logs/RUN_LOG.md` for meaningful runs, blockers, generated artifacts, and
 workflow changes. Do not log secrets or private user details.
 """
 
@@ -213,7 +213,7 @@ the ideas. The repo gives agents and humans a verified way to operate them.
 - `docs/` - human-readable system documentation.
 - `data/` - verified local data, exports, metadata, and audits.
 - `scripts/` - tested, vetted, reusable automation.
-- `skills/` - agent-readable recipes with human-readable summaries.
+- `recipes/` - agent-readable recipes with human-readable summaries.
 - `chapters/` - book manuscript.
 - `slides/` - optional decks and teaching material.
 - `pantry/` - research notes and source material.
@@ -229,7 +229,7 @@ exist, say so before inventing one.
 ## Human Docs
 
 - `docs/repo-structure.md`
-- `docs/skills.md`
+- `docs/recipes.md`
 - `docs/phase-gates.md`
 
 ## Book Map
@@ -253,9 +253,9 @@ This repo is both a book and an agentic Cowork system.
 2. Check verified local data before external lookup.
 3. Check vetted stored scripts before creating ad hoc scripts.
 4. Use lowercase `scripts/` only. Never create `SCRIPTS/`.
-5. Treat skills as agent-facing recipes with human-readable summaries.
+5. Treat recipes as agent-facing recipes with human-readable summaries.
 6. Do not run a fully automated pipeline until phase gates pass.
-7. Log meaningful runs in `skills/RUN_LOG.md`.
+7. Log meaningful runs in `logs/RUN_LOG.md`.
 
 ## Completion Report
 
@@ -323,7 +323,7 @@ This repo is organized by function and audience.
 
 - `CLAUDE.md`
 - `AGENTS.md`
-- `skills/`
+- `recipes/`
 - `scripts/`
 
 ## Evidence
@@ -337,11 +337,11 @@ Use lowercase `scripts/` only.
 
 
 def skills_doc() -> str:
-    return """# Skills
+    return """# Recipes
 
-Skills are agent-facing recipes with human-readable executive summaries.
+Recipes are agent-facing recipes with human-readable executive summaries.
 
-Each skill should include:
+Each recipe should include:
 
 1. Executive summary
 2. Required reads
@@ -374,11 +374,11 @@ If a gate has no failure path, it is not a gate.
 
 
 def shared_skill() -> str:
-    return """# Shared Skill Contract
+    return """# Shared Recipe Contract
 
 ## Executive Summary
 
-This file defines the rules all skills must follow.
+This file defines the rules all recipes must follow.
 
 ## Rules
 
@@ -388,7 +388,7 @@ This file defines the rules all skills must follow.
 4. Use external lookup only after local evidence is insufficient.
 5. Create ad hoc scripts only when no stored script fits.
 6. Run explicit tests before scaling automation.
-7. Log meaningful runs in `skills/RUN_LOG.md`.
+7. Log meaningful runs in `logs/RUN_LOG.md`.
 
 ## Phase Gates
 
@@ -402,16 +402,16 @@ This file defines the rules all skills must follow.
 
 
 def skill_readme() -> str:
-    return """# Skills
+    return """# Recipes
 
 ## Executive Summary
 
-Skills are executable recipes for agents and readable operating cards for
+Recipes are executable recipes for agents and readable operating cards for
 humans.
 
 ## Required Shape
 
-Every skill should include an executive summary, required reads, phase gates,
+Every recipe should include an executive summary, required reads, phase gates,
 primary tools, workflow, output contract, logging rule, and stop conditions.
 """
 
@@ -419,7 +419,7 @@ primary tools, workflow, output contract, logging rule, and stop conditions.
 def run_log() -> str:
     return """# Run Log
 
-Use this file for meaningful skill runs, blockers, generated artifacts, and
+Use this file for meaningful recipe runs, blockers, generated artifacts, and
 workflow changes.
 
 ## Template
@@ -427,7 +427,7 @@ workflow changes.
 ```markdown
 ## YYYY-MM-DD -- Short task name
 
-- **Skill:** ...
+- **Recipe:** ...
 - **Inputs:** ...
 - **Commands:** ...
 - **Outputs:** ...
@@ -584,7 +584,7 @@ def create_repo(args: argparse.Namespace) -> None:
         "output",
         "pantry",
         "scripts",
-        "skills",
+        "recipes",
         "resumes",
     ]
     if args.with_slides:
@@ -598,13 +598,13 @@ def create_repo(args: argparse.Namespace) -> None:
         "AGENTS.md": agents_md(),
         "DATA_CONTRACT.md": data_contract(),
         "docs/repo-structure.md": repo_structure_doc(),
-        "docs/skills.md": skills_doc(),
+        "docs/recipes.md": skills_doc(),
         "docs/phase-gates.md": phase_gates_doc(),
         "scripts/README.md": script_readme(),
         "scripts/svg-to-png.mjs": svg_to_png_script(),
-        "skills/README.md": skill_readme(),
-        "skills/_shared.md": shared_skill(),
-        "skills/RUN_LOG.md": run_log(),
+        "recipes/README.md": skill_readme(),
+        "recipes/_shared.md": shared_skill(),
+        "logs/RUN_LOG.md": run_log(),
         "book.md": book_md(args.title, args.author, args.subtitle),
         "outline.md": outline(args.title, args.author, args.subtitle, args.chapters),
         "metadata.yaml": metadata(args.title, args.author, args.subtitle, args.publisher),

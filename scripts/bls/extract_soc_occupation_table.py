@@ -147,13 +147,13 @@ def build_compact_table(bls_dir: Path) -> tuple[list[dict[str, object]], dict[st
     text_dir = bls_dir / "db-30-2-text"
     occupations_path = text_dir / "Occupation Data.txt"
     abilities_path = text_dir / "Abilities.txt"
-    skills_path = text_dir / "Skills.txt"
+    skills_path = text_dir / "Recipes.txt"
     alternate_titles_path = text_dir / "Alternate Titles.txt"
     job_zones_path = text_dir / "Job Zones.txt"
 
     occupations = read_tsv(occupations_path)
     abilities = pivot_level_scores(read_tsv(abilities_path), ABILITY_ELEMENTS)
-    skills = pivot_level_scores(read_tsv(skills_path), SKILL_ELEMENTS)
+    recipes = pivot_level_scores(read_tsv(skills_path), SKILL_ELEMENTS)
 
     job_zones = {
         row["O*NET-SOC Code"]: row.get("Job Zone", "")
@@ -200,7 +200,7 @@ def build_compact_table(bls_dir: Path) -> tuple[list[dict[str, object]], dict[st
         for element in ABILITY_ELEMENTS:
             row[f"ability_{slug(element)}_lv"] = abilities.get(onet_soc, {}).get(element)
         for element in SKILL_ELEMENTS:
-            row[f"skill_{slug(element)}_lv"] = skills.get(onet_soc, {}).get(element)
+            row[f"skill_{slug(element)}_lv"] = recipes.get(onet_soc, {}).get(element)
 
         row["cognitive_pivot_score"] = cognitive_pivot_score(row)
         rows.append(row)
@@ -276,7 +276,7 @@ def audit_lines(bls_dir: Path, output: Path, rows: list[dict[str, object]], meta
         "- Job preparation: O*NET job zone.",
         "- Search support: alternate title count and sample alternate titles.",
         "- Labor market context: latest OEWS employment, mean/median wage, hourly wage, PRSE.",
-        "- Cognitive demand features: selected O*NET ability and skill Level scores.",
+        "- Cognitive demand features: selected O*NET ability and recipe Level scores.",
         "- `cognitive_pivot_score`: average of selected reasoning, judgment, and systems scores.",
         "",
         "## Large Files",

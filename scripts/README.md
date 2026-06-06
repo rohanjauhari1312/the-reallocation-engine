@@ -48,7 +48,7 @@ Cowork embed their fonts as base64 — no system font dependency.
 
 Scaffolds a new repository that is both a book and a Cowork agentic system. It
 extends the book scaffold with `CLAUDE.md`, `AGENTS.md`, human-readable `docs/`,
-agent-readable `skills/`, verified-data-first rules, vetted-script-first rules,
+agent-readable `recipes/`, verified-data-first rules, vetted-script-first rules,
 phase gates, and lowercase `scripts/`.
 
 ```bash

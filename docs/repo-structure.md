@@ -12,7 +12,7 @@ the-reallocation-engine/
   docs/
   data/
   scripts/
-  skills/
+  recipes/
   chapters/
   slides/        # optional, create when decks exist
   pantry/
@@ -30,13 +30,13 @@ the-reallocation-engine/
 
 `AGENTS.md` contains cross-agent rules for any agent working in the repo.
 
-`docs/` contains human-readable system documentation: architecture, repo structure, phase gates, data contracts, skill summaries, script standards, and maintenance guides.
+`docs/` contains human-readable system documentation: architecture, repo structure, phase gates, data contracts, recipe summaries, script standards, and maintenance guides.
 
 `data/` contains verified local data, database exports, generated datasets, metadata, source records, and audits. Agents should check `data/` before external lookup.
 
 `scripts/` contains tested, vetted, reusable automation. Agents should check `scripts/` before creating ad hoc scripts. The repo uses lowercase `scripts/` only.
 
-`skills/` contains agent-facing recipes and operating procedures. Skills should begin with a human-readable executive summary, then provide exact required reads, commands, tests, outputs, and stop conditions for agents.
+`recipes/` contains agent-facing recipes and operating procedures. Recipes should begin with a human-readable executive summary, then provide exact required reads, commands, tests, outputs, and stop conditions for agents.
 
 `chapters/` contains the book manuscript. It should not contain operational scripts or raw data.
 
@@ -56,12 +56,16 @@ Put broad human-readable system docs in `docs/`.
 
 Examples:
 
+- `docs/README.md`
 - `docs/repo-structure.md`
-- `docs/architecture.md`
+- `docs/operations.md`
 - `docs/phase-gates.md`
-- `docs/python.md`
-- `docs/script-standards.md`
-- `docs/skills.md`
+- `docs/data-and-provenance.md`
+- `docs/scripts.md`
+- `docs/recipes.md`
+- `docs/manuscript.md`
+- `docs/contributing.md`
+- `docs/Documentation.md`
 
 Keep root-level files only when they are entry points or contracts that agents and humans must find immediately:
 
@@ -102,7 +106,7 @@ External lookup is a fallback for gaps, freshness checks, or questions the verif
 
 ## Agent Recipe Rules
 
-Agent-facing recipes live in `skills/`.
+Agent-facing recipes live in `recipes/`.
 
 Each recipe should include:
 
