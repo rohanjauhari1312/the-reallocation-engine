@@ -19,7 +19,8 @@
     "ats:scan": "node scripts/ats/scan.mjs",
     "ats:verify": "node scripts/ats/verify-pipeline.mjs",
     "resumes:pdf": "node scripts/resumes/generate-pdf.mjs",
-    "svg-to-png": "node scripts/svg-to-png.mjs"
+    "svg-to-png": "node scripts/svg-to-png.mjs",
+    "audit:layout": "node scripts/svg-layout-audit.mjs"
   },
   "dependencies": {
     "glob": "^10.0.0",
