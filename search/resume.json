@@ -1,7 +1,7 @@
 {
   "attested": true,
   "attested_date": "2026-06-25",
-  "attestation_note": "Three errors corrected: McKinsey title was promoted from 'Product Analyst Intern' to 'Product Analyst Co-op' in the extracted draft (it is a co-op, not an internship, but the agent also dropped the 'Co-op' framing inconsistently across fields); Avo Automation end date was extracted as 'June 2025' instead of the correct June 2024; the agent inferred a 'Cloud Architecture' skill at expert level from one Terraform/Packer side project, which overstates actual depth.",
+  "attestation_note": "Three errors corrected: Avo Automation end date was extracted as July 2024 instead of the correct June 2024; SwiftHire project link (bit.ly/4bHTqI8) was stale/wrong and replaced with the live link (swifthire-board.vercel.app); resume summary said 'early-stage team' which conflicted with profile.yml's stated growth-stage (Series A-C) target — resolved in favor of early-stage as the real target and corrected profile.yml to match.",
   "candidate": {
     "name": "Rohan Manish Jauhari",
     "location": "Boston, MA",
@@ -9,18 +9,29 @@
     "website": "https://rohanjauhari.com",
     "linkedin": "https://linkedin.com/in/rohanjauhari"
   },
-  "summary": "Product Manager with 3+ years of experience building AI-enabled and automation-driven products from zero to scale. Track record of turning ambiguous problems into shipped products that reduce manual effort, automate complex workflows, and drive measurable business outcomes across engineering, design, and data teams.",
+  "summary": "Product Manager who ships AI products end to end. 4 years owning roadmaps, leading engineers, and turning ambiguous problems into features people actually use. Built and deployed multi-agent AI systems outside of work. Graduating August 2026, looking to join an early-stage team where the problems are hard and the pace is fast.",
   "experience": [
+    {
+      "company": "Northeastern University",
+      "location": "Boston, MA",
+      "title": "Research Assistant",
+      "start_date": "2026-01",
+      "end_date": "present",
+      "highlights": [
+        "Reached 85% prediction accuracy on patient falls and hospitalizations by building an agentic monitoring system pulling real-time data from 5+ wearables"
+      ],
+      "verifiable_via": "Faculty advisor reference, university record"
+    },
     {
       "company": "McKinsey & Company",
       "location": "Boston, MA",
-      "title": "Product Analyst Co-op (Intern)",
+      "title": "Product Analyst Co-op",
       "start_date": "2025-08",
       "end_date": "2025-12",
       "highlights": [
-        "Enabled leadership to prioritize roadmap by defining 50+ feature-level KPIs and building an end-to-end Snowflake to Power BI streaming pipeline that gave stakeholders live visibility into product performance",
-        "Informed quarterly product planning by analyzing engagement across 100+ metrics using Heap Analytics, surfacing adoption gaps and recommending targeted feature optimizations that shaped the next release cycle",
-        "Reduced manual analysis effort by 60% by partnering with product and data teams to build an AI analytics agent on Snowflake Cortex that translated natural language queries into validated SQL using an LLM-as-judge layer"
+        "Reduced manual analysis time by 60% by building an AI agent that let the product team query data in plain English instead of writing SQL every time",
+        "Defined 50+ feature-level KPIs and built a full pipeline from raw data to leadership dashboards, giving the team a single source of truth for roadmap decisions",
+        "Analyzed 100+ engagement metrics using Heap Analytics to surface adoption gaps and recommend where to focus next"
       ],
       "verifiable_via": "Offer letter / co-op placement record, LinkedIn"
     },
@@ -32,10 +43,10 @@
       "start_date": "2021-08",
       "end_date": "2024-06",
       "highlights": [
-        "Cut total manual effort by 90% by leading AI enablement of the product end to end: ran discovery across the full user journey to identify the highest-friction bottlenecks, defined the roadmap, and led 6 engineers and 2 designers from spec to delivery",
-        "Drove 33% expansion in clientele by digging into client-specific workflows, identifying underserved use cases, and building tailored roadmaps, pricing strategies, and user journeys for each segment",
-        "Reduced churn by 50% by owning the feedback loop with stakeholders and clients, triaging issues across 100+ product features, and closing gaps between what was shipped and what users actually needed",
-        "Drove 15% revenue gain in 6 months by shipping 50+ features and fixes, moving fast without breaking quality on a product used across enterprise workflows"
+        "Cut manual effort by 90% by leading AI enablement across the product: identified the biggest friction points in the user journey, defined the roadmap, and shipped it with 6 engineers and 2 designers",
+        "Grew the customer base by 33% by working directly with prospects to understand their use cases, shaping pricing and product strategy around what actually moved deals forward",
+        "Reduced churn by 50% by staying close to customers, gathering feedback across 100+ features, and closing gaps fast enough to change minds before they left",
+        "Drove 15% revenue growth in 6 months by keeping a high shipping cadence across 50+ features and fixes, without letting quality slip"
       ],
       "verifiable_via": "Former manager reference, LinkedIn employment history"
     }
@@ -43,55 +54,21 @@
   "projects": [
     {
       "name": "Nourish Agent",
-      "description": "AI Nutritionist that Predicts and Mitigates Stress Eating",
-      "url": "http://bit.ly/4tcbS2I",
+      "description": "Chat-First AI Nutritionist",
+      "url": "https://bit.ly/4tcbS2I",
       "highlights": [
-        "Shipped a chat-first AI nutritionist that adapts meal and nutrient recommendations in real time using live wearable data synced in the background",
-        "Reduced recommendation drift across 25+ daily nutrient targets by designing a multi-agent architecture with three independent specialist agents for nutrition, scheduling, and wearable sync",
-        "Predicts stress eating risk by analyzing vitals, sleep, and last meal together, then proactively suggests preventive meals"
+        "Defined and shipped a chat-first AI nutritionist that pulls live wearable data in the background and adapts recommendations in real time, no manual logging required",
+        "Architected a multi-agent system on n8n where nutrition, scheduling, and health monitoring run as isolated agents, each improvable without touching the others. Integrated Google Fitness, Gmail, Google Calendar, and Supabase via MCP"
       ],
       "verifiable_via": "Public link"
-    },
-    {
-      "name": "RohBot",
-      "description": "AI Voice Agent that Turns a Portfolio into a Conversation",
-      "url": "https://rohanjauhari.com/rohbot",
-      "highlights": [
-        "Converted a static portfolio into a live voice conversation that answers questions, qualifies opportunities, and books calls in real time",
-        "Built on ElevenLabs Conversational AI with a cloned voice and RAG over case study documents, with browser-side actions and n8n workflows connected to Google Calendar and Gmail",
-        "Secured the public agent against abuse with webhook authentication, ElevenLabs prompt-injection guardrails, locked client-side config, and rate-limited endpoints"
-      ],
-      "verifiable_via": "Public link, live demo"
     },
     {
       "name": "SwiftHire",
-      "description": "Job Application Automation via Multi-Agent Pipeline",
+      "description": "AI Job Search Automation",
       "url": "https://swifthire-board.vercel.app/",
       "highlights": [
-        "Cut job application time by 25% and manual effort by 80% with an automated apply pipeline",
-        "Built a 5-agent pipeline: JD extraction and resume tailoring via Claude, PDF compilation, recruiter email lookup via Hunter.io, outreach drafting, and application form filling",
-        "Automated job discovery by monitoring ATS platforms for new postings and sending real-time notifications"
-      ],
-      "verifiable_via": "Public link"
-    },
-    {
-      "name": "SupportIQ",
-      "description": "MCP-Enabled RAG Pipeline for Internal Knowledge Retrieval",
-      "url": "https://rohanjauhari.com/ragproject",
-      "highlights": [
-        "Built a semantic search system over 160 internal documents to resolve tickets end to end",
-        "Ingested and embedded source documents using Voyage AI into Pinecone, with Claude synthesizing grounded cited answers from retrieved passages at query time"
-      ],
-      "verifiable_via": "Public link"
-    },
-    {
-      "name": "Automated Software Deployment Pipeline (CI/CD)",
-      "url": "https://bit.ly/42vYmLP",
-      "start_date": "2025-02",
-      "end_date": "2025-04",
-      "highlights": [
-        "Built a CI/CD pipeline on GitHub Actions that gates every merge with automated testing, security scanning, and observability checks",
-        "Provisioned distributed infrastructure across GCP and AWS using Terraform and Packer: EC2 behind a load balancer with auto-scaling, RDS on isolated VPCs, S3 for storage, and GCE for compute"
+        "Surveyed 100+ jobseekers, found 10 concrete inefficiencies in the application process, and built 3 AI-powered features to fix them: auto-fill, real-time document tailoring, and bulk applying",
+        "Cut manual effort by 80% and application time by 25% across active users"
       ],
       "verifiable_via": "Public link"
     }
@@ -113,14 +90,14 @@
   ],
   "skills": {
     "product_project": [
-      "Product Lifecycle", "Roadmapping", "User Research", "Agile/Scrum",
-      "Metrics/KPIs/OKRs", "PRD", "MVP", "Go-To-Market Strategy",
-      "Cross-Functional Leadership", "Prioritization", "Market Analysis",
-      "Requirement Gathering"
+      "Product Strategy", "Roadmapping", "User Research", "Agile",
+      "Metrics and KPIs", "PRD", "Go-To-Market", "Prioritization",
+      "Market Analysis", "Stakeholder Management"
     ],
     "technical": [
-      "Data Analytics", "Data Engineering", "Data Science", "Artificial Intelligence",
-      "Python", "AI Agents", "Power BI", "Statistics", "SQL"
+      "AI Agents", "Multi-Agent Systems", "Python", "SQL", "Data Analytics",
+      "Full Stack Development", "Cloud (GCP, AWS)", "MCP", "n8n", "Supabase",
+      "Heap Analytics"
     ]
   },
   "certifications": [],

@@ -1,7 +1,7 @@
 target_role: >
-  AI/agentic product manager at a growth-stage (Series A-C) startup building
-  AI agent or automation-driven products, owning roadmap from discovery
-  through shipped feature.
+  AI/agentic product manager at an early-stage (seed / Series A) startup
+  building AI agent or automation-driven products, owning roadmap from
+  discovery through shipped feature.
 
 visa:
   type: F-1 OPT
@@ -35,8 +35,8 @@ industry:
     - AI / agentic tooling
     - Automation SaaS
   company_size:
-    stage: Series A-C
-    note: Growth-stage preferred over seed (too early/unstable for sponsorship) or public (too slow-moving for the AI agent space).
+    stage: Seed - Series A
+    note: Early-stage preferred over growth/public for pace and scope of ownership.
   hard_exclusions: []
   exclusions_note: No hard sector exclusions identified at this time.
 
@@ -46,3 +46,8 @@ sponsorship:
     Sponsorship is a hard gate. A company with no employer visa sponsorship
     history is Skip regardless of fit score, sponsorship tier, or timeline
     factor.
+  tension_note: >
+    Seed/Series A companies sponsor visas less often than growth-stage ones —
+    this narrows the addressable set under the sponsorship gate. Have not yet
+    mapped which early-stage companies in target sectors have a sponsorship
+    track record; flagged as open research, not yet resolved.

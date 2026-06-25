@@ -165,3 +165,10 @@ private emails, or sensitive application notes.
 - **resume.json:** Every job entry is traceable — McKinsey via offer letter/co-op placement record, Avo via former manager reference, all projects via public links. No promoted titles or invented skills remain after the attestation pass.
 - **profile.yml:** Visa section reflects actual OPT timeline (start date known, STEM eligibility self-confirmed but flagged for DSO re-verification) rather than aspirational framing. Sponsorship is stated as a hard gate, not softened.
 - **gaps.md:** Every evidence citation in the table traces to a real, checked source (KORE1's 2026 AI PM hiring guide, O*NET 11-2021.00) rather than an invented demand signal — confirmed by running the searches myself rather than accepting the agent's first-draft claims at face value.
+
+## 2026-06-25 -- Re-extracted personal layer from Resume.pdf (supersedes tex-based draft)
+
+- **Why:** Switched extraction source from `master_resume_v10.tex` to `~/Desktop/Resume.pdf`, the actual current resume.
+- **Attestation errors caught in this pass (3):** Avo Automation end date extracted as July 2024, corrected to June 2024; SwiftHire project link was stale (bit.ly/4bHTqI8), replaced with the live link (swifthire-board.vercel.app); resume summary stated "early-stage team" as the target while `profile.yml` said growth-stage Series A-C — resolved in favor of early-stage as the real target and corrected `profile.yml` and `gaps.md` to match.
+- **Also dropped:** RohBot, SupportIQ, and the CI/CD pipeline project, intentionally trimmed from this resume version (confirmed, not an extraction error).
+- **gaps.md updated:** target-role references changed from growth-stage/Series A-C to early-stage/seed-Series A; killed-row and eval-gap rows reworded to only cite projects actually present in the attested resume.json (Nourish Agent, SwiftHire, McKinsey); added a `sponsorship.tension_note` to profile.yml flagging that early-stage companies sponsor visas less often than growth-stage ones, as open research rather than resolved.
