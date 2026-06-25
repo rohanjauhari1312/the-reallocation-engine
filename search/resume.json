@@ -1,0 +1,128 @@
+{
+  "attested": true,
+  "attested_date": "2026-06-25",
+  "attestation_note": "Three errors corrected: McKinsey title was promoted from 'Product Analyst Intern' to 'Product Analyst Co-op' in the extracted draft (it is a co-op, not an internship, but the agent also dropped the 'Co-op' framing inconsistently across fields); Avo Automation end date was extracted as 'June 2025' instead of the correct June 2024; the agent inferred a 'Cloud Architecture' skill at expert level from one Terraform/Packer side project, which overstates actual depth.",
+  "candidate": {
+    "name": "Rohan Manish Jauhari",
+    "location": "Boston, MA",
+    "email": "jauhari.r@northeastern.edu",
+    "website": "https://rohanjauhari.com",
+    "linkedin": "https://linkedin.com/in/rohanjauhari"
+  },
+  "summary": "Product Manager with 3+ years of experience building AI-enabled and automation-driven products from zero to scale. Track record of turning ambiguous problems into shipped products that reduce manual effort, automate complex workflows, and drive measurable business outcomes across engineering, design, and data teams.",
+  "experience": [
+    {
+      "company": "McKinsey & Company",
+      "location": "Boston, MA",
+      "title": "Product Analyst Co-op (Intern)",
+      "start_date": "2025-08",
+      "end_date": "2025-12",
+      "highlights": [
+        "Enabled leadership to prioritize roadmap by defining 50+ feature-level KPIs and building an end-to-end Snowflake to Power BI streaming pipeline that gave stakeholders live visibility into product performance",
+        "Informed quarterly product planning by analyzing engagement across 100+ metrics using Heap Analytics, surfacing adoption gaps and recommending targeted feature optimizations that shaped the next release cycle",
+        "Reduced manual analysis effort by 60% by partnering with product and data teams to build an AI analytics agent on Snowflake Cortex that translated natural language queries into validated SQL using an LLM-as-judge layer"
+      ],
+      "verifiable_via": "Offer letter / co-op placement record, LinkedIn"
+    },
+    {
+      "company": "Avo Automation",
+      "company_context": "Growth Stage, No-code Automation SaaS",
+      "location": "Bengaluru, India",
+      "title": "Product Engineer -> Senior Product Engineer",
+      "start_date": "2021-08",
+      "end_date": "2024-06",
+      "highlights": [
+        "Cut total manual effort by 90% by leading AI enablement of the product end to end: ran discovery across the full user journey to identify the highest-friction bottlenecks, defined the roadmap, and led 6 engineers and 2 designers from spec to delivery",
+        "Drove 33% expansion in clientele by digging into client-specific workflows, identifying underserved use cases, and building tailored roadmaps, pricing strategies, and user journeys for each segment",
+        "Reduced churn by 50% by owning the feedback loop with stakeholders and clients, triaging issues across 100+ product features, and closing gaps between what was shipped and what users actually needed",
+        "Drove 15% revenue gain in 6 months by shipping 50+ features and fixes, moving fast without breaking quality on a product used across enterprise workflows"
+      ],
+      "verifiable_via": "Former manager reference, LinkedIn employment history"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Nourish Agent",
+      "description": "AI Nutritionist that Predicts and Mitigates Stress Eating",
+      "url": "http://bit.ly/4tcbS2I",
+      "highlights": [
+        "Shipped a chat-first AI nutritionist that adapts meal and nutrient recommendations in real time using live wearable data synced in the background",
+        "Reduced recommendation drift across 25+ daily nutrient targets by designing a multi-agent architecture with three independent specialist agents for nutrition, scheduling, and wearable sync",
+        "Predicts stress eating risk by analyzing vitals, sleep, and last meal together, then proactively suggests preventive meals"
+      ],
+      "verifiable_via": "Public link"
+    },
+    {
+      "name": "RohBot",
+      "description": "AI Voice Agent that Turns a Portfolio into a Conversation",
+      "url": "https://rohanjauhari.com/rohbot",
+      "highlights": [
+        "Converted a static portfolio into a live voice conversation that answers questions, qualifies opportunities, and books calls in real time",
+        "Built on ElevenLabs Conversational AI with a cloned voice and RAG over case study documents, with browser-side actions and n8n workflows connected to Google Calendar and Gmail",
+        "Secured the public agent against abuse with webhook authentication, ElevenLabs prompt-injection guardrails, locked client-side config, and rate-limited endpoints"
+      ],
+      "verifiable_via": "Public link, live demo"
+    },
+    {
+      "name": "SwiftHire",
+      "description": "Job Application Automation via Multi-Agent Pipeline",
+      "url": "https://swifthire-board.vercel.app/",
+      "highlights": [
+        "Cut job application time by 25% and manual effort by 80% with an automated apply pipeline",
+        "Built a 5-agent pipeline: JD extraction and resume tailoring via Claude, PDF compilation, recruiter email lookup via Hunter.io, outreach drafting, and application form filling",
+        "Automated job discovery by monitoring ATS platforms for new postings and sending real-time notifications"
+      ],
+      "verifiable_via": "Public link"
+    },
+    {
+      "name": "SupportIQ",
+      "description": "MCP-Enabled RAG Pipeline for Internal Knowledge Retrieval",
+      "url": "https://rohanjauhari.com/ragproject",
+      "highlights": [
+        "Built a semantic search system over 160 internal documents to resolve tickets end to end",
+        "Ingested and embedded source documents using Voyage AI into Pinecone, with Claude synthesizing grounded cited answers from retrieved passages at query time"
+      ],
+      "verifiable_via": "Public link"
+    },
+    {
+      "name": "Automated Software Deployment Pipeline (CI/CD)",
+      "url": "https://bit.ly/42vYmLP",
+      "start_date": "2025-02",
+      "end_date": "2025-04",
+      "highlights": [
+        "Built a CI/CD pipeline on GitHub Actions that gates every merge with automated testing, security scanning, and observability checks",
+        "Provisioned distributed infrastructure across GCP and AWS using Terraform and Packer: EC2 behind a load balancer with auto-scaling, RDS on isolated VPCs, S3 for storage, and GCE for compute"
+      ],
+      "verifiable_via": "Public link"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Northeastern University, College of Engineering",
+      "location": "Boston, MA",
+      "degree": "Master of Science in Information Systems",
+      "gpa": "3.73/4",
+      "graduation_date": "2026-08"
+    },
+    {
+      "institution": "The LNM Institute of Information Technology",
+      "location": "Jaipur, India",
+      "degree": "Bachelor of Technology in Computer Science and Engineering",
+      "graduation_date": "2021-05"
+    }
+  ],
+  "skills": {
+    "product_project": [
+      "Product Lifecycle", "Roadmapping", "User Research", "Agile/Scrum",
+      "Metrics/KPIs/OKRs", "PRD", "MVP", "Go-To-Market Strategy",
+      "Cross-Functional Leadership", "Prioritization", "Market Analysis",
+      "Requirement Gathering"
+    ],
+    "technical": [
+      "Data Analytics", "Data Engineering", "Data Science", "Artificial Intelligence",
+      "Python", "AI Agents", "Power BI", "Statistics", "SQL"
+    ]
+  },
+  "certifications": [],
+  "publications": []
+}

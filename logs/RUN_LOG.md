@@ -150,3 +150,18 @@ private emails, or sensitive application notes.
 - **Rebuilt:** `node scripts/build-instructions.mjs --promote` → `AGENTS.md` + `CLAUDE.md` regenerated; `CLAUDE.md` now imports `@SNICKERDOODLE.md`.
 - **Untouched:** `data/` CSVs (real company names containing "mycroft") and prior RUN_LOG history (append-only).
 - **Result:** conformance + doctor green; no stale `MYCROFT.md` outside data/history.
+
+## 2026-06-25 -- Personal layer setup exercise: search/resume.json, profile.yml, gaps.md
+
+- **Exercise:** INFO 7375 setup exercise — "Your Search's Personal Layer."
+- **Built:** `search/resume.json` (attested), `search/profile.yml`, `search/gaps.md`, `search/private-notes.md` (gitignored). Added `!search/resume.json` exception to `.gitignore`, which previously globally ignored any `resume.json` and would have silently dropped this required file.
+- **Attestation errors caught in resume.json (3):** McKinsey co-op title framing was inconsistent across the extracted draft; Avo Automation end date was extracted as June 2025 instead of the correct June 2024; the agent inferred a "Cloud Architecture" skill at depth from a single Terraform/Packer side project, which overstates actual expertise — removed from the skills list.
+- **Top gap (gaps.md):** No formal eval/observability ownership on a production AI surface — I've built eval-adjacent pieces (an LLM-as-judge layer at McKinsey, agent systems at RohBot/Nourish Agent/SupportIQ) but never owned a standing eval framework as a standalone, citable artifact. Evidence: KORE1's 2026 AI PM hiring guide names eval-set ownership as a named technical-fluency bar for Series B AI PM postings.
+- **Killed row:** "No enterprise-scale (Fortune 500 / regulated industry) AI deployment experience." Reason: this was the agent pattern-matching on "AI product manager" generically rather than on my actual stated target (growth-stage, Series A-C) in profile.yml — checked real postings for that segment and enterprise deployment isn't a named requirement there.
+- **profile.yml field corrected from agent's first draft:** the agent's first draft of the OPT date block conflated "Sep 1" as ambiguous between start and end date — corrected to explicit `opt_start_date: 2026-09-01` / `opt_end_date: 2027-09-01` after confirming which one I meant.
+
+### Step 4 verification check
+
+- **resume.json:** Every job entry is traceable — McKinsey via offer letter/co-op placement record, Avo via former manager reference, all projects via public links. No promoted titles or invented skills remain after the attestation pass.
+- **profile.yml:** Visa section reflects actual OPT timeline (start date known, STEM eligibility self-confirmed but flagged for DSO re-verification) rather than aspirational framing. Sponsorship is stated as a hard gate, not softened.
+- **gaps.md:** Every evidence citation in the table traces to a real, checked source (KORE1's 2026 AI PM hiring guide, O*NET 11-2021.00) rather than an invented demand signal — confirmed by running the searches myself rather than accepting the agent's first-draft claims at face value.
